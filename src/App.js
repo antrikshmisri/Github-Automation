@@ -1,19 +1,19 @@
-import "./App.css";
 import React , {Component , useState} from "react"
+import {BrowserRouter as Router , Switch , Route} from "react-router-dom"
 import { eel } from "./eel.js";
-
-
+import Splash from './routes/Splash'
+import Home from './routes/Home'
 function App() {
-  let [value , setValue] = useState('')
-  eel.set_host("ws://localhost:8888");
-  eel.getpara("argument")(res => setValue(value = res))
+  // eel.set_host("ws://localhost:8888");
   return (
-    <div className="App">
-        <div className="Main">
-          <h1>Hello</h1>
-          <p>{value}</p>
-        </div>
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path='/' exact component={Splash}/>
+          <Route path='/home' component={Home}/>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 export default App;
