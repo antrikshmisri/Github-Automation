@@ -14,7 +14,7 @@ if __name__ == '__main__':
         }, options={
             'port': 8888,
             'host': 'localhost',
-        } , suppress_error = True)
+        } , suppress_error = True , size=(1000,600))
     else:
         eel.init('build')
         eel.start('index.html')
