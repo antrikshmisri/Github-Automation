@@ -14,5 +14,11 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
+    <script>
+      const size = [1000, 600];
+      window.addEventListener("resize", () => {
+        window.resizeTo(size[0], size[1]);
+      });
+    </script>
   </body>
 </html>
