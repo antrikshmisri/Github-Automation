@@ -9,14 +9,12 @@ function App() {
   // eel.set_host("ws://localhost:8888");
   return (
     <Router>
-      <Header />
       <div className="App">
         <Switch>
           <Route path="/" exact component={Splash} />
           <Route path="/home" component={Home} />
         </Switch>
       </div>
-      <Footer />
     </Router>
   );
 }
