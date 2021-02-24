@@ -63,3 +63,31 @@ body {
   filter: drop-shadow(4px 4px 10px rgba(33, 37, 41,0.25));
   transform: translateY(-5px);
 }
+
+.text{
+  text-align: center;
+  color: #CED4DA;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+header{
+  color: #CED4DA;
+  text-align: center;
+  background-color: #212529;
+  margin: auto ;
+  position: relative;
+  padding: 10px 0;
+}
+
+
+footer {
+  color: #CED4DA;
+  background-color: #212529;
+  position: relative;
+  text-align: center;
+  padding: 10px 0;
+  bottom: 0;
+  width: 100%;
+  
+}
