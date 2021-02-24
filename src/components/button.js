@@ -3,7 +3,7 @@ import React from "react";
 const Button = (props) => {
   return (
     <button
-      style={{ backgroundColor: props.bgColor }}
+      style={{ backgroundColor: props.bgColor , Color: props.textColor }}
       className="button btn"
       onClick={props.onClick}
     >
