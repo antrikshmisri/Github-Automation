@@ -5,7 +5,7 @@ import Splash from "./routes/Splash";
 import Home from "./routes/Home";
 import Commit from "./routes/Commit";
 function App() {
-  // eel.set_host("ws://localhost:8888");
+  eel.set_host("ws://localhost:8888");
   return (
     <Router>
       <div className="App">
