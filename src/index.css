@@ -8,7 +8,6 @@ body {
   font-family: 'Righteous', cursive !important;
 }
 
-
 #root
 {
   min-height: 100vh;
@@ -29,7 +28,7 @@ body {
 }
 .splash-container h1
 {
-  color: rgb(33, 37, 41);
+  color: #343A40;
 }
 .logo
 {
@@ -53,11 +52,11 @@ body {
 {
   transition: 0.7s cubic-bezier(0.075, 0.82, 0.165, 1) !important;
   border: none;
-  width: 30%;
-  min-height: 15px;
+  /* width: 30%; */
+  min-height: 35px;
   border-radius: 8px;
   filter: drop-shadow(0px 4px 15px rgba(33, 37, 41,0.25));
-  color: rgb(33, 37, 41) !important;
+  /* color: rgb(33, 37, 41); */
   border-bottom: 4px solid rgba(33, 37, 41 , 0.75) !important;
 }
 .button:hover
@@ -78,20 +77,145 @@ header{
   text-align: center;
   background-color: #212529;
   margin: auto ;
-  position: relative;
+  position: fixed;
   padding: 5px 0;
   min-width: 100vw;
-
+  top: 0;
+  left: 0;
 }
 
 
 footer {
   color: #CED4DA;
   background-color: #212529;
-  position: relative;
+  position: fixed;
   text-align: center;
   padding: 10px 0;
-  bottom: 0;
   width: 100%;
-  
+  bottom: 0;
+  left: 0;
+}
+
+header h1 , footer h1
+{
+  font-size: 1.5rem;
+}
+
+footer h1
+{
+  word-spacing: 4px;
+}
+
+span.name
+{
+  color: #48BFE3;
+}
+
+.loading:after {
+  content: ' .';
+  animation: dots 1s steps(5, end) infinite;}
+
+@keyframes dots {
+  0%, 20% {
+    color: rgba(0,0,0,0);
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);}
+  40% {
+    color: #CED4DA;
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);}
+  60% {
+    text-shadow:
+      .25em 0 0 #CED4DA,
+      .5em 0 0 rgba(0,0,0,0);}
+  80%, 100% {
+    text-shadow:
+      .25em 0 0 #CED4DA,
+      .5em 0 0 #CED4DA;}}
+
+.input-div
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+input[name = "install"]
+{
+  background-color: #E9ECEF;
+  border: none;
+  padding: 5px 5px;
+  width: 60%;
+  border-radius: 8px;
+  filter: drop-shadow(0px 4px 15px rgba(33, 37, 41,0.25));
+  outline: none;
+}
+
+.file-card
+{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  background-color: #212529;
+  color: #CED4DA;
+  filter: drop-shadow(0px 4px 15px rgba(33, 37, 41,0.25));
+  min-height: 60vh;
+  min-width: 30vw;
+  padding: 5px 5px;
+  border-radius: 10px;
+}
+
+.file-card h1
+{
+  border-bottom: 3px solid #E9ECEF;
+  margin-bottom: 20px;
+  padding: 5px 0px;
+}
+
+input[name = "commit"]
+{
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+hr
+{
+  min-width: 100%;
+  min-height: 2px;
+  background-color: #E9ECEF;
+}
+.file-btn
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100% !important;
+  flex-grow: 1;
+  padding-bottom: 0.5rem;
+}
+.commit-btn,.reject-btn
+{
+  display: flex;
+  flex-direction: row;
+}
+.commit-btn
+{
+  justify-content: flex-start;
+}
+.reject-btn
+{
+  justify-content: flex-end;
+}
+
+.carousel-control-prev,.carousel-control-next
+{
+  transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  margin: auto;
+  background-color: #343A40;
+  max-height: 50px;
+  max-width: 50px;
+  border-radius: 50%;
+  transform-origin: center;
+  transform: rotateZ(0deg);
 }
