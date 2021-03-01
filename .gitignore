@@ -24,3 +24,8 @@ yarn-error.log*
 
 package-lock.json
 yarn.lock
+
+scripts
+.idea
+__pycache__
+.git
