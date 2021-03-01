@@ -21,6 +21,10 @@ body {
   justify-content: center;
   min-height: 100vh;
 }
+form 
+{
+  width: 100%;
+}
 .splash-container
 {
   display: flex;
