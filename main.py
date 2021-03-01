@@ -1,10 +1,20 @@
 import eel
 import sys
+from src.scripts import repoInfo,utils
+
 
 @eel.expose
 def getpara(arg):
     return f"You passed {arg}"
 
+@eel.expose
+def getInfo(path):
+    info = repoInfo.checkinfoInDir(path)
+    return info
+    
+@eel.expose
+def checkPath(path):
+    return utils.checkPath(path)
 
 if __name__ == '__main__':
     if sys.argv[1] == '--develop':
