@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "../components/button";
 import { useHistory } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "../components/Header.js";
 import Footer from "../components/Footer.js";
@@ -9,14 +8,14 @@ import Footer from "../components/Footer.js";
 const Home = () => {
   const history = useHistory();
   const nextPage = () => {
-    let page = "/Commit";
+    let page = "/commit";
     history.push(page);
   };
   return (
     <>
       <Header />
       <div className="text">
-        <h1>Listening...</h1>
+        <h1 className="loading mx-0 my-4">Listening</h1>
         <Button
           onClick={nextPage}
           text="VIEW FILES"
