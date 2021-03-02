@@ -11,10 +11,16 @@ def getpara(arg):
 def getInfo(path):
     info = repoInfo.checkinfoInDir(path)
     return info
+
     
 @eel.expose
 def checkPath(path):
     return utils.checkPath(path)
+
+@eel.expose
+def init(url , branch):
+    from src.scripts import main
+    return main.init(url , branch)
 
 if __name__ == '__main__':
     if sys.argv[1] == '--develop':
