@@ -5,46 +5,66 @@ import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../assets/logo.svg";
 import TextField from "../components/textfield";
-import swal from 'sweetalert';
-import {eel} from '../eel'
+import swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import { eel } from "../eel";
+import messages from "../constants/messages";
 
+const reactSwal = withReactContent(swal);
 
 const Splash = () => {
   const history = useHistory();
-  const [dirValue , setDirValue] = useState("")
+  const [dirValue, setDirValue] = useState("");
+
+  // go to next page
   const nextPage = () => {
     let page = "/home";
     history.push(page);
   };
+  // handle input value change
   const handleChange = (event) => {
-    setDirValue(event.target.value)
-  }
+    setDirValue(event.target.value);
+  };
+  // handle form submit event
   const handleSubmit = (event) => {
-    event.preventDefault()
-    eel.checkPath(dirValue)(ret => {
-      if(ret)
-      {
-        swal({
-          title: "Found the directory",
-          text: "Click to start the script",
-          icon: "success",
-          button: "Start",
-        })
-        .then(
-          nextPage
-        )
+    event.preventDefault();
+    // check if entered path is valid
+    eel.checkPath(dirValue)((ret) => {
+      if (ret) {
+        swal.fire(messages.foundDirectory).then((value) => {
+          // get remote info from directory
+          eel.getInfo(dirValue)((ret) => {
+            // if info not found show no remote alert
+            if (ret.includes("n")) {
+              // get url , branch from alert inputs
+              reactSwal.fire(messages.noRemote).then((value) => {
+                let [url, branch] = value.value;
+                // run python entrypoint script
+                eel.init(url,branch)
+                nextPage()
+              })
+              .catch(err => {
+                console.log(err)
+              });
+            } else {
+              let [url , branch] = ret
+              swal.fire({
+                ...messages.foundRemote,
+                html: `<a onclick="window.open('${url}', '${url}')" href="javascript:void()">${url}</a> <br/> <p>${branch}</p>`,
+              }).then(value => {
+                eel.init(url , branch)
+                nextPage()
+              })
+            }
+          });
+        });
+      } 
+      // if path not valid show noDir alert
+      else {
+        swal.fire(messages.noDirectory);
       }
-      else
-      {
-        swal({
-          title: "Oops! No such directory",
-          text: "Couldn't find the directory",
-          icon: "error",
-          button: "Ok",
-        })
-      }
-    })
-  }
+    });
+  };
   return (
     <Container className="splash-container">
       <Row>
@@ -60,8 +80,8 @@ const Splash = () => {
               isRequired={true}
               placeholder="Enter Directory Location"
               name="install"
-              onChange = {handleChange}
-              value = {dirValue}
+              onChange={handleChange}
+              value={dirValue}
             />
           </Col>
           <Col className="btn-div" lg={"12"}>
