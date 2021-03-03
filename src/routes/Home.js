@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "../components/Header.js";
 import Footer from "../components/Footer.js";
+import tmp from "../scripts/tmp.json";
 
 const Home = () => {
   const history = useHistory();
@@ -21,7 +22,7 @@ const Home = () => {
           text="VIEW FILES"
           textColor="#CED4DA"
           bgColor="#343A40"
-        />
+        ><span className="file-count py-0">{tmp.length}</span></Button>
       </div>
       <Footer />
     </>
