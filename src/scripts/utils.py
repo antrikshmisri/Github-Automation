@@ -44,12 +44,12 @@ def initCommands(info):
     print('initial setup done :)')
     filechange.ischanged(url, branch)
 
-def commitAndUpdate(changedfile,diffarr,url,branch):
+def commitAndUpdate(path,changedfile,diffarr,url,branch):
     import os
     from .gitcommands import git_commands
     from .logger import updatedata
     from .colors import logcolors
-    git = git_commands(os.getcwd())
+    git = git_commands(path)
     git.add(changedfile)
     if(git.commit(changedfile,diffarr) == False):
         print(f'{logcolors.ERROR}Reverting Push{logcolors.ENDC}')
@@ -61,5 +61,4 @@ def commitAndUpdate(changedfile,diffarr,url,branch):
             git.push(url, branch)
 
 def checkPath(path):
-    from os.path import isfile
     return isdir(path)
