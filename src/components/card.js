@@ -6,17 +6,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const Card = (props) => {
   return (
-    <Col className="text-center file-card" md={"6"}>
-      <Container className="file-content">
+    <Col className=" file-card" md={"6"}>
+      <div className="file-content">
         <h1>
           <span>
             <img src={props.image} />
           </span>
           {props.heading}
         </h1>
-        <p className="lead">{props.content}</p>
+        <div className="code-block">
+        <code>{props.content}</code>
+        </div>
         <hr />
-      </Container>
+      </div>
       <Container className="file-btn">
         <Row>
           <Col md={"12"}>
