@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import Button from "../components/button";
 import { useHistory } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
@@ -14,7 +14,13 @@ const reactSwal = withReactContent(swal);
 
 const Splash = () => {
   const history = useHistory();
-  const [dirValue, setDirValue] = useState("");
+  const [dirValue, setDirValue] = useState(
+    localStorage.getItem("dirValue") || ""
+  );
+
+  useEffect(() => {
+    localStorage.setItem("dirValue", dirValue);
+  }, [dirValue]);
 
   // go to next page
   const nextPage = () => {
