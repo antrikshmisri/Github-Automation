@@ -2,7 +2,7 @@ import json
 import os
 from .colors import logcolors
 from . import filechange
-jsonpath = os.path.join(os.getcwd(), 'auto-scripts' , 'tmp.json')
+jsonpath = os.path.join(os.getcwd(),'src','scripts' ,'tmp.json')
 buffer = []
 
 
@@ -48,13 +48,13 @@ def updatedata(filename, diffarr):
         print('No data to read')
 
 
-def checkdata(url , branch):
+def checkdata(url , branch ,path):
     if(os.path.getsize(jsonpath) > 0):
         with open(jsonpath, 'r') as file:
             initdata = json.load(file)
         if(len(initdata) == 0):
             print(f'{logcolors.SUCCESS}Change tree clean{logcolors.ENDC}')
         else:
-            filechange.ischanged(url , branch , initbuffer = initdata)
+            filechange.ischanged( url , branch , path , initbuffer = initdata)
     else:
         print(f'{logcolors.ERROR}No changes found from previous session{logcolors.ENDC}')
