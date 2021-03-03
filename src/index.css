@@ -8,6 +8,28 @@ body {
   font-family: 'Righteous', cursive !important;
 }
 
+::-webkit-scrollbar { 
+  width: 8px; 
+} 
+
+/* Track */ 
+::-webkit-scrollbar-track { 
+  background: #CED4DA; 
+  border-radius: 5px; 
+} 
+
+/* Handle */ 
+::-webkit-scrollbar-thumb {
+  transition: 0.7s cubic-bezier(0.075, 0.82, 0.165, 1); 
+  background: #343A40; 
+  border-radius: 5px; 
+} 
+
+/* Handle on hover */ 
+::-webkit-scrollbar-thumb:hover { 
+  background: #505963; 
+}
+
 #root
 {
   min-height: 100vh;
@@ -64,6 +86,16 @@ form
   /* color: rgb(33, 37, 41); */
   border-bottom: 4px solid rgba(33, 37, 41 , 0.75) !important;
 }
+
+span.file-count
+{
+  position: fixed;
+  top: -40%;
+  right: -10%;
+  background-color: #E81224;
+  width: 24px;
+  border-radius: 50%;
+}
 .button:hover
 {
   filter: drop-shadow(4px 4px 10px rgba(33, 37, 41,0.25));
@@ -115,7 +147,15 @@ span.name
 {
   color: #48BFE3;
 }
-
+code
+{
+  white-space: pre-wrap;
+}
+.code-block
+{
+  max-height: 100px;
+  overflow-y: auto;
+}
 .loading:after {
   content: ' .';
   animation: dots 1s steps(5, end) infinite;}
@@ -175,9 +215,14 @@ input[name = "install"]
 {
   border-bottom: 3px solid #E9ECEF;
   margin-bottom: 20px;
-  padding: 5px 0px;
+  padding: 10px 0px;
 }
 
+.file-content
+{
+  padding: 1rem 1rem;
+  white-space: nowrap;
+}
 input[name = "commit"]
 {
   margin-bottom: 10px;
