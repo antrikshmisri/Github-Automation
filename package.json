@@ -20,10 +20,9 @@
     "start:js": "react-scripts start",
     "build:js": "react-scripts build",
     "start:eel": "python main.py --develop",
-    "build:eel": "python -m eel main.py build --onefile --noconsole --name python-react",
-    "clean:build": "rm -rf build dist",
+    "build:eel": "python -m eel python-react.spec build --onefile --noconsole --name python-react",
     "start": "npm-run-all -p start:*",
-    "build": "npm-run-all clean:build build:*",
+    "build": "npm-run-all build:*",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
