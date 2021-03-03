@@ -6,10 +6,9 @@ from .logger import *
 import sys
 from .utils import initCommands
 
-
-def init(url , branch):
-    checkdata(url , branch)
-    ischanged(url,branch)
+def init(url , branch , path):
+    checkdata(url , branch,path)
+    ischanged(url,branch,path)
 
 
 
