@@ -34,13 +34,14 @@ const Splash = () => {
         swal.fire(messages.foundDirectory).then((value) => {
           // get remote info from directory
           eel.getInfo(dirValue)((ret) => {
-            // if info not found show no remote alert
+
             if (ret.includes("n")) {
               // get url , branch from alert inputs
+
               reactSwal.fire(messages.noRemote).then((value) => {
                 let [url, branch] = value.value;
                 // run python entrypoint script
-                eel.init(url,branch)
+                eel.init(url,branch,dirValue)
                 nextPage()
               })
               .catch(err => {
@@ -52,7 +53,7 @@ const Splash = () => {
                 ...messages.foundRemote,
                 html: `<a onclick="window.open('${url}', '${url}')" href="javascript:void()">${url}</a> <br/> <p>${branch}</p>`,
               }).then(value => {
-                eel.init(url , branch)
+                eel.init(url , branch,dirValue)
                 nextPage()
               })
             }
