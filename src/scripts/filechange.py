@@ -1,21 +1,16 @@
-import os
-from .gitcommands import git_commands
+
 from .diffcalc import *
 from .ignore import getIgnoreFiles
 from .logger import *
 from .utils import getNestedFiles,read_file,commitAndUpdate
-from .colors import logcolors
-mypath = os.getcwd()
-
-git = git_commands(mypath)
-
-ignoredirs = getIgnoreFiles()
-# gets the list of all nested files
-onlyfiles = getNestedFiles(mypath,ignoredirs)
+import time
 
 
 
-def ischanged(url, branch,*args,**kwargs):
+def ischanged(url, branch, path,*args,**kwargs):
+    ignoredirs = getIgnoreFiles(path)
+    # gets the list of all nested files
+    onlyfiles = getNestedFiles(path,ignoredirs)
     changedfile = []
     diffarr = []
     # if uncommited data found perform git commands on them
@@ -28,13 +23,13 @@ def ischanged(url, branch,*args,**kwargs):
             changedfile.append(file)
 
         # Performing Git Commands for changed files
-        commitAndUpdate(changedfile,diffarr,url,branch)
-    print('Listening for changes....')
+        # commitAndUpdate(path,changedfile,diffarr,url,branch)
     initial = list(read_file(onlyfiles))
     while True:
         current = list(read_file(onlyfiles))
         changeditem = []
         previtem = []
+        time.sleep(5)
         if(current != initial):
             # Calculating Previous Version of File
             for ele in initial:
@@ -47,9 +42,7 @@ def ischanged(url, branch,*args,**kwargs):
                     changeditem.append(ele)
             # calculating changed file's name
             for i in range(0, len(changeditem)):
-                print('loop :-', i)
                 changedfile.append(onlyfiles[current.index(changeditem[i])])
-            print(f"Changed file is {logcolors.BOLD}{changedfile}{logcolors.ENDC}\n")
 
             # Calculating Diff for previous and changed version of file
             diff = calcDiff(previtem, changeditem[0])
@@ -58,7 +51,6 @@ def ischanged(url, branch,*args,**kwargs):
                 writedata(path=file, diff=diff)
 
             # Performing Git Commands for changed files
-            commitAndUpdate(changedfile,diffarr,url,branch)
+            # commitAndUpdate(path,changedfile,diffarr,url,branch)
 
             initial = current
-            # time.sleep(5)
