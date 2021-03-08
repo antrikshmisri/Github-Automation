@@ -15,21 +15,40 @@ const Card = (props) => {
           {props.heading}
         </h1>
         <div className="code-block">
-        <code>{props.content}</code>
+          <code>{props.content}</code>
         </div>
         <hr />
       </div>
+
       <Container className="file-btn">
         <Row>
-          <Col md={"12"}>
-            <TextField placeholder="Commit Msg" name="commit" />
-          </Col>
-          <Col className="commit-btn" md={"6"}>
-            <Button bgColor="#48BFE3" textColor="#343A40" text="Commit" />
-          </Col>
-          <Col className="reject-btn" md={"6"}>
-            <Button bgColor="#E81224" textColor="#343A40" text="Discard" />
-          </Col>
+          <form onSubmit={props.onSubmit}>
+            <Col className="input-div" lg={"12"}>
+              <TextField
+                isRequired={true}
+                placeholder="Commit Msg"
+                name="commit"
+                onChange={props.onChange}
+                value={props.value}
+              />
+            </Col>
+            <Col className="commit-btn" lg={"6"}>
+              <Button
+                name="commit"
+                bgColor="#48BFE3"
+                textColor="#343A40"
+                text="Commit"
+              />
+            </Col>
+            <Col className="reject-btn" lg={"6"}>
+              <Button
+                name="discard"
+                bgColor="#E81224"
+                textColor="#343A40"
+                text="Discard"
+              />
+            </Col>
+          </form>
         </Row>
       </Container>
     </Col>
