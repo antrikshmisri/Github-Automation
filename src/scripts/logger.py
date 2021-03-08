@@ -2,7 +2,15 @@ import json
 import os
 from .colors import logcolors
 from . import filechange
-jsonpath = os.path.join(os.getcwd(),'src','scripts' ,'tmp.json')
+
+buildpath = os.path.join(os.getcwd() , 'build')
+jsonpath = ''
+if(not os.path.isdir(buildpath)):
+    jsonpath = os.path.join(os.getcwd(), 'public','tmp.json')
+else:
+    jsonpath = os.path.join(os.getcwd() , 'build','tmp.json')
+
+
 buffer = []
 
 
