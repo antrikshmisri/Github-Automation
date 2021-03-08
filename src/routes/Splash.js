@@ -9,6 +9,7 @@ import swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { eel } from "../eel";
 import messages from "../constants/messages";
+import useRepoInfo from "../hooks/useRepoInfo"
 
 const reactSwal = withReactContent(swal);
 
@@ -21,7 +22,12 @@ const Splash = () => {
   useEffect(() => {
     localStorage.setItem("dirValue", dirValue);
   }, [dirValue]);
+  
+  const [info , setInfo] = useRepoInfo()
 
+  useEffect(() => {
+    localStorage.setItem("repoInfo" , info)
+  }, [info])
   // go to next page
   const nextPage = () => {
     let page = "/home";
@@ -39,9 +45,8 @@ const Splash = () => {
       if (ret) {
         swal.fire(messages.foundDirectory).then((value) => {
           // get remote info from directory
-          eel.getInfo(dirValue)((ret) => {
 
-            if (ret.includes("n")) {
+            if (info.includes("n")) {
               // get url , branch from alert inputs
 
               reactSwal.fire(messages.noRemote).then((value) => {
@@ -54,7 +59,7 @@ const Splash = () => {
                 console.log(err)
               });
             } else {
-              let [url , branch] = ret
+              let [url , branch] = info
               swal.fire({
                 ...messages.foundRemote,
                 html: `<a onclick="window.open('${url}', '${url}')" href="javascript:void()">${url}</a> <br/> <p>${branch}</p>`,
@@ -63,7 +68,7 @@ const Splash = () => {
                 nextPage()
               })
             }
-          });
+
         });
       } 
       // if path not valid show noDir alert
