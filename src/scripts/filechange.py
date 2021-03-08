@@ -5,14 +5,14 @@ from .logger import *
 from .utils import getNestedFiles,read_file,commitAndUpdate
 import time
 
-
+changedfile = []
+diffarr = []
 
 def ischanged(url, branch, path,*args,**kwargs):
+    global changedfile,diffarr
     ignoredirs = getIgnoreFiles(path)
     # gets the list of all nested files
     onlyfiles = getNestedFiles(path,ignoredirs)
-    changedfile = []
-    diffarr = []
     # if uncommited data found perform git commands on them
     initbuffer = kwargs.get('initbuffer' , -1)
     if(initbuffer != -1):
