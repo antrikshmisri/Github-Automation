@@ -24,37 +24,24 @@ class git_commands:
     def add(self, filelist):
         for file in filelist:
             # perform git add on file
-            print(f"{logcolors.SUCCESS}Adding{logcolors.ENDC}",
-                  file.split('\\')[-1])
             call(f'{self.git_command} add {file}')
 
     # git commit -m "passed message"
 
-    def commit(self, msglist:list, filelist:list, *args, **kwargs):
+    def commit(self, msg, filelist , file, *args, **kwargs):
         diffarr = kwargs.get('diffarr', -1)
-        for file in filelist:
-            # ask user for commit message
-
-            # msg = str(input(f'{logcolors.BOLD}Enter the commit message for{logcolors.ENDC} ' +
-            #                 file.split('\\')[-1] + f' {logcolors.BOLD}or enter {logcolors.ERROR}-r{logcolors.ENDC} to reject commit{logcolors.ENDC}'))
-            msg = msglist[filelist.index(file)]
             # if msg == -r reject commit
-            if(msg == '-r'):
-                print(f'{logcolors.ERROR}commit rejected{logcolors.ENDC}')
-                if(diffarr != -1):
-                    diffarr.remove(diffarr[filelist.index(file)])
-                filelist.remove(file)
-                msglist.remove(msg)
-                call('cls', shell=True)
-                return False
-            # else execute git commit for the file
-            # added a comment
-            else:
-                call(f'{self.git_command} commit -m "{msg}"')
-                msglist.remove(msg)
-                call('cls', shell=True)
-                print(
-                    f'Commited {logcolors.CYAN}{file}{logcolors.ENDC} with msg: {logcolors.BOLD}{msg}{logcolors.ENDC}')
+        if(msg == '-r'):
+            if(diffarr != -1):
+                diffarr.remove(diffarr[filelist.index(file)])
+            filelist.remove(file)
+            call('cls', shell=True)
+            return False
+        # else execute git commit for the file
+        # added a comment
+        else:
+            call(f'{self.git_command} commit -m "{msg}" {self.path}')
+            call('cls', shell=True)
 
     def setremote(self, url):
         call(f'{self.git_command} remote add origin {url}')
@@ -67,7 +54,6 @@ class git_commands:
     def push(self, url, branch):
         call(f'{self.git_command} push -u {url} {branch}')
         call('cls', shell=True)
-        print(f'{logcolors.SUCCESS}Successfully Pushed Changes{logcolors.ENDC}')
 
     def getremote(self):
         remote = Popen(f'{self.git_command} config --get remote.origin.url',
