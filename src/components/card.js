@@ -21,35 +21,37 @@ const Card = (props) => {
       </div>
 
       <Container className="file-btn">
-        <Row>
-          <form onSubmit={props.onSubmit}>
+        <form>
+          <Row>
             <Col className="input-div" lg={"12"}>
               <TextField
                 isRequired={true}
                 placeholder="Commit Msg"
-                name="commit"
+                name="commit-field"
                 onChange={props.onChange}
                 value={props.value}
               />
             </Col>
-            <Col className="commit-btn" lg={"6"}>
+            <Col className="commit-btn" md={"6"}>
               <Button
+                onClick={props.onSubmit}
                 name="commit"
                 bgColor="#48BFE3"
                 textColor="#343A40"
                 text="Commit"
               />
             </Col>
-            <Col className="reject-btn" lg={"6"}>
+            <Col className="reject-btn" md={"6"}>
               <Button
+                onClick={props.onSubmit}
                 name="discard"
                 bgColor="#E81224"
                 textColor="#343A40"
                 text="Discard"
               />
             </Col>
-          </form>
-        </Row>
+          </Row>
+        </form>
       </Container>
     </Col>
   );
