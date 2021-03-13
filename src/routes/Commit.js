@@ -5,13 +5,14 @@ import Header from "../components/Header.js";
 import Footer from "../components/Footer.js";
 import Card from "../components/card";
 import useJsonFile from "../hooks/useJsonFile";
+import useArray from "../hooks/useArray";
 import { eel } from "../eel.js";
 import { useEffect, useState } from "react";
 // import tmp from "../scripts/tmp.json";
 
 const Commit = () => {
   const [jsonData, setJsonData] = useJsonFile("./tmp.json");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useArray(jsonData.length);
   const [info, setInfo] = useState([]);
   const dirValue = localStorage.getItem("dirValue");
 
@@ -19,11 +20,10 @@ const Commit = () => {
     setInfo(localStorage.getItem("repoInfo").split(","));
   }, []);
 
-  const handleSubmit = (file, message, event) => {
+  const handleSubmit = (file, message, idx, event) => {
     event.preventDefault();
-    console.log(info, jsonData, message);
     if (event.target.name === "discard") {
-      setMessage("-r");
+      setMessage("-r", idx);
     }
     const [url, branch] = info;
     eel.commitAndUpdate(
@@ -33,13 +33,13 @@ const Commit = () => {
       url,
       branch
     )((ret) => {
-      console.log(ret)
+      console.log(ret);
       ret ? console.log("Pushed!") : console.log("Reverted");
     });
   };
 
-  const handleChange = (event) => {
-    setMessage(event.target.value);
+  const handleChange = (event, idx) => {
+    setMessage(event.target.value, idx);
   };
   return (
     <>
@@ -56,11 +56,13 @@ const Commit = () => {
                         key={idx}
                         heading={file.path.split("\\").pop()}
                         content={file.changes}
-                        onChange={handleChange}
-                        onSubmit={(e) => {
-                          handleSubmit(file.path, message, e);
+                        onChange={(e) => {
+                          handleChange(e, idx);
                         }}
-                        value={message}
+                        onSubmit={(e) => {
+                          handleSubmit(file.path, message, idx, e);
+                        }}
+                        value={message[idx]}
                       />
                     </Carousel.Item>
                   );
