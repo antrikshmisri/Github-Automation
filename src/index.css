@@ -223,7 +223,7 @@ input[name = "install"]
   padding: 1rem 1rem;
   white-space: nowrap;
 }
-input[name = "commit"]
+input[name = "commit-field"]
 {
   margin-bottom: 10px;
   width: 100%;
