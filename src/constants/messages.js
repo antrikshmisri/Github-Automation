@@ -46,12 +46,12 @@ const messages = {
     title: "Oops! No such directory",
     text: "Couldn't find the directory",
     icon: "error",
-    button: "Ok",
+    confirmButtonText: "Ok",
   },
   foundRemote: {
     title: "Repository info found",
     icon: "success",
-    button: "Start",
+    confirmButtonText: "Start",
   },
 };
 
