@@ -45,8 +45,8 @@ const Card = (props) => {
               <Button
                 onClick={props.onSubmit}
                 name="discard"
-                bgColor="#E81224"
-                textColor="#343A40"
+                bgColor="#495057"
+                textColor="#dee2e6"
                 text="Discard"
               />
             </Col>
