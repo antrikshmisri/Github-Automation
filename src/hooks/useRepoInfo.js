@@ -8,7 +8,7 @@ const useRepoInfo = () => {
         eel.getInfo(dirValue)(ret => {
             setInfo(ret)
         })
-    },[])
+    },[dirValue])
     return [info , setInfo]
 }
 
