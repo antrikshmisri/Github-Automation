@@ -35,7 +35,7 @@ def writedata(*args, **kwargs):
             json.dump(readdata, file, indent=4)
 
 
-def updatedata(file, diff):
+def updatedata(idx):
     if(os.path.getsize(jsonpath) > 0):
         with open(jsonpath, 'r') as file:
             readdata = json.load(file)
@@ -44,9 +44,7 @@ def updatedata(file, diff):
         else:
             tmpdata = readdata.copy()
             print('Found some changed files')
-            for obj in readdata:
-                if obj['path'] == file and obj['changes'] == diff:
-                    tmpdata.remove(obj)
+            del tmpdata[idx]
             writedata(buffer=tmpdata)
 
     else:
