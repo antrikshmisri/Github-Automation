@@ -100,8 +100,8 @@ const Splash = () => {
             <Button
               onClick={handleSubmit}
               text="LISTEN !"
-              bgColor="#48BFE3"
-              textColor="#343A40"
+              bgColor="#495057"
+              textColor="#dee2e6"
             />
           </Col>
         </form>
