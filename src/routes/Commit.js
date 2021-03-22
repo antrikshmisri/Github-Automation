@@ -20,7 +20,7 @@ const Commit = () => {
     setInfo(localStorage.getItem("repoInfo").split(","));
   }, []);
 
-  const handleSubmit = (file, message, idx, event) => {
+  const handleSubmit = (file, diff, message, idx, event) => {
     event.preventDefault();
     if (event.target.name === "discard") {
       setMessage("-r", idx);
@@ -29,7 +29,8 @@ const Commit = () => {
     eel.commitAndUpdate(
       dirValue,
       file,
-      message,
+      diff,
+      message[idx],
       url,
       branch
     )((ret) => {
@@ -60,7 +61,7 @@ const Commit = () => {
                           handleChange(e, idx);
                         }}
                         onSubmit={(e) => {
-                          handleSubmit(file.path, message, idx, e);
+                          handleSubmit(file.path, file.changes, message, idx, e);
                         }}
                         value={message[idx]}
                       />
