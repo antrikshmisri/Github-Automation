@@ -12,7 +12,6 @@ def getpara(arg):
 @eel.expose
 def getInfo(path):
     info = repoInfo.checkinfoInDir(path)
-    print(info)
     return info
 
 
@@ -28,10 +27,9 @@ def init(url, branch, path):
     t1.start()
 
 @eel.expose
-def commitAndUpdate(path , file , msg , url , branch):
+def commitAndUpdate(path , file , diff , msg , url , branch):
     from src.scripts.utils import commitAndUpdate
-    t2 = threading.Thread(target=commitAndUpdate , args=(path , file , msg , url , branch))
-    t2.start()
+    commitAndUpdate(path , file , diff , msg , url , branch)
 
 
 if __name__ == '__main__':
