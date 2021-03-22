@@ -44,7 +44,7 @@ def initCommands(info):
     print('initial setup done :)')
     filechange.ischanged(url, branch)
 
-def commitAndUpdate(path,file,diff,msg,url,branch):
+def commitAndUpdate(path,file,idx,msg,url,branch):
     from .gitcommands import git_commands
     from .logger import updatedata
     from .colors import logcolors
@@ -58,7 +58,7 @@ def commitAndUpdate(path,file,diff,msg,url,branch):
         # updatedata(changedfile, diffarr)
     else:
         print(f'{logcolors.SUCCESS}Updating Logs{logcolors.ENDC}')
-        updatedata(file, diff)
+        updatedata(idx)
         git.push(url, branch)
     return commit_response
 
