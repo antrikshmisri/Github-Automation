@@ -8,7 +8,6 @@ from .utils import initCommands
 
 def init(url , branch , path):
     checkdata(url , branch,path)
-    ischanged(url,branch,path)
 
 
 

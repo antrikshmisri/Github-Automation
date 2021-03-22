@@ -17,6 +17,7 @@ buffer = []
 def writedata(*args, **kwargs):
     data = {}
     global buffer
+    readdata = []
     updatedbuffer = kwargs.get('buffer', -1)
     path = kwargs.get('path', None)
     diff = kwargs.get('diff', None)
@@ -27,29 +28,25 @@ def writedata(*args, **kwargs):
     elif(path and diff):
         data['path'] = path
         data['changes'] = diff
-        buffer.append(data)
+        with open(jsonpath , 'r') as file:
+            readdata = json.load(file)
         with open(jsonpath, 'w') as file:
-            json.dump([obj for obj in buffer], file, indent=4)
+            readdata.append(data)
+            json.dump(readdata, file, indent=4)
 
 
-def updatedata(filename, diffarr):
+def updatedata(file, diff):
     if(os.path.getsize(jsonpath) > 0):
         with open(jsonpath, 'r') as file:
             readdata = json.load(file)
         if(len(readdata) == 0):
             print('No changed file left')
         else:
-            tmpdata,tmpfile,tmpdiff = readdata.copy(),filename.copy(),diffarr.copy()
+            tmpdata = readdata.copy()
             print('Found some changed files')
-            for file,diff in zip(filename,diffarr):
-                print(f'Removing {str(file)} from json file')
-                for obj in readdata:
-                    if obj['path'] == file and obj['changes'] == diff:
-                        tmpdata.remove(obj)
-                        tmpfile.remove(file)
-                        tmpdiff.remove(diff)
-            # make the original lists empty without changing address
-            del filename[:],diffarr[:]
+            for obj in readdata:
+                if obj['path'] == file and obj['changes'] == diff:
+                    tmpdata.remove(obj)
             writedata(buffer=tmpdata)
 
     else:
@@ -62,7 +59,9 @@ def checkdata(url , branch ,path):
             initdata = json.load(file)
         if(len(initdata) == 0):
             print(f'{logcolors.SUCCESS}Change tree clean{logcolors.ENDC}')
+            filechange.ischanged( url , branch , path)
         else:
-            filechange.ischanged( url , branch , path , initbuffer = initdata)
+            print(f'{logcolors.SUCCESS}Found Some Changes{logcolors.ENDC}')
+            filechange.ischanged( url , branch , path)
     else:
         print(f'{logcolors.ERROR}No changes found from previous session{logcolors.ENDC}')

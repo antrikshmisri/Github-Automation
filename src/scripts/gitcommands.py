@@ -21,27 +21,27 @@ class git_commands:
         elif _platform == "win32":
             call('type nul>README.md')
 
-    def add(self, filelist):
-        for file in filelist:
-            # perform git add on file
-            call(f'{self.git_command} add {file}')
+    def add(self, file):
+        # perform git add on file
+        call(f'{self.git_command} add {file}')
 
     # git commit -m "passed message"
 
-    def commit(self, msg, filelist , file, *args, **kwargs):
+    def commit(self, msg , *args, **kwargs):
         diffarr = kwargs.get('diffarr', -1)
             # if msg == -r reject commit
         if(msg == '-r'):
-            if(diffarr != -1):
-                diffarr.remove(diffarr[filelist.index(file)])
-            filelist.remove(file)
-            call('cls', shell=True)
             return False
         # else execute git commit for the file
         # added a comment
         else:
-            call(f'{self.git_command} commit -m "{msg}" {self.path}')
-            call('cls', shell=True)
+            try:
+                call(f'{self.git_command} commit -m "{msg}" {self.path}')
+                return True
+            except Exception as e:
+                print(f"{logcolors.ERROR} {e} {logcolors.ENDC}")
+                return False
+            
 
     def setremote(self, url):
         call(f'{self.git_command} remote add origin {url}')
@@ -53,7 +53,7 @@ class git_commands:
 
     def push(self, url, branch):
         call(f'{self.git_command} push -u {url} {branch}')
-        call('cls', shell=True)
+        
 
     def getremote(self):
         remote = Popen(f'{self.git_command} config --get remote.origin.url',
