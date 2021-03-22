@@ -29,7 +29,7 @@ const Commit = () => {
     eel.commitAndUpdate(
       dirValue,
       file,
-      diff,
+      idx,
       message[idx],
       url,
       branch
@@ -70,7 +70,7 @@ const Commit = () => {
                 })}
               </Carousel>
             ) : (
-              <h1 style={{ opacity: "0.5" }}>All set! No changes to push</h1>
+              <h1 style={{ opacity: "0.5" , textAlign: "center" }}>All set! No changes to push</h1>
             )}
           </Col>
         </Row>
