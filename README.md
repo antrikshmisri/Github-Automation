@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Github Automation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="./readme_images/splash.png">
+<img src="./readme_images/home.png">
+<img src="./readme_images/commit.png">
 
-## Available Scripts
+## What is it about :confused:?
 
-In the project directory, you can run:
+Are you tired of writing the same git commands over and over again? If so, this project can help you reduce that effort significantly. The app does this by automating a lot of stuff for you. The user just has to enter the commit message for the changed file, rest the app handles everything for the user.
 
-### `yarn start`
+## Features of Github - Automation :sparkles:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Removes repition of entering same git commands
+2. Displays the changed `file` along with its `diff` for making it easy to write commit messages
+3. Auto pushes the files that have been commited
+4. Stores the files in `JSON` file so, you can continue to commit changes later on.
+5. Clean and clutter-free UI
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## How does it work?
 
-### `yarn test`
+The front-end of Github - Automation is written in `ReactJS`, the logical/pseudo-backend is written in `python`. To integrate ReactJS and python script this app uses a module named `eel`. With the help of `eel`, any javascript code/framework can run a python function and get the return value if any. Learn more about eel for python [here](https://pypi.org/project/Eel/#eel).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This is not a browser based application, rather it is a standalone executable application. This is achieved by yet another module named `pyinstaller`, the `.exe` file runs the python scripts on top of the production build of the `React-App`.
 
-### `yarn build`
+## How to Run :runner:?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run the app in development environment, follow the steps below:-
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Get python dependencies:-
+```bash
+pip install -r requirements.txt
+```
+2. Get the node modules:-
+```bash
+npm install
+```
+3. Start the development server:-
+```bash
+yarn start
+```
