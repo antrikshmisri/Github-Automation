@@ -1,13 +1,12 @@
 
 from .diffcalc import *
 from .ignore import getIgnoreFiles
-from .logger import *
-from .utils import getNestedFiles,read_file,commitAndUpdate
+from .utils import getNestedFiles, read_file
 import time
 
 
 def ischanged(url, branch, path):
-    changed = False
+    from .logger import writedata
     ignoredirs = getIgnoreFiles(path)
     # gets the list of all nested files
     onlyfiles = getNestedFiles(path,ignoredirs)
@@ -30,7 +29,7 @@ def ischanged(url, branch, path):
                     changeditem.append(ele)
             # calculating changed file's name
             filename = onlyfiles[current.index(changeditem[0])]
-            print(changeditem[0] , filename)
+            print(changeditem[0], filename)
             # Calculating Diff for previous and changed version of file
             diff = calcDiff(previtem, changeditem[0])
             writedata(path=filename, diff=diff)
