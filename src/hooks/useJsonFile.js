@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-
+import header from "../constants/headers"
 const useJsonFile = (fileName) => {
   const [jsonData, setJsonData] = useState([]);
   useEffect(() => {
-    fetch(fileName)
+    fetch(fileName , header)
       .then((response) => {
         return response.json();
       })
