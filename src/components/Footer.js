@@ -4,8 +4,7 @@ function Footer() {
   return (
     <footer>
       <h1>
-        Made with ❤️ by <span className="name">Antriksh</span> &{" "}
-        <span className="name">Vaibhav</span>
+        Made with ❤️ by <span className="name">Antriksh</span>
       </h1>
     </footer>
   );
