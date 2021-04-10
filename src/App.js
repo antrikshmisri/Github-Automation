@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import { eel } from "./eel.js";
 import Splash from "./routes/Splash";
 import Home from "./routes/Home";
