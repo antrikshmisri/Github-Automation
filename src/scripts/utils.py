@@ -62,5 +62,6 @@ def commitAndUpdate(path,file,idx,msg,url,branch):
         git.push(url, branch)
     return commit_response
 
+
 def checkPath(path):
     return isdir(path)
