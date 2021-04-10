@@ -44,7 +44,8 @@ if __name__ == '__main__':
             }, suppress_error=True, size=(1000, 600))
     else:
         eel.init('build')
-        eel.start('', options={
+        eel.start('', 
+            options={
                 'port': 8888,
                 'host': 'localhost',
             }, suppress_error=True, size=(1000, 600))
