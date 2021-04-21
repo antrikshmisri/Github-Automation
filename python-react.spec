@@ -2,7 +2,7 @@
 import sys
 block_cipher = None
 path = sys.executable
-eel_path = path.replace('python.exe', '') + 'lib\\site-packages\\eel\\eel.js'
+eel_path = path.replace('python.exe', '') + 'lib/site-packages/eel/eel.js'
 
 a = Analysis(['main.py'],
              pathex=['./'],
