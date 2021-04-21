@@ -1,6 +1,8 @@
 # -*- mode: python ; coding: utf-8 -*-
+import sys
 block_cipher = None
-eel_path = '/opt/buildhome/python3.7/lib/python3.7/site-packages/eel/eel.js'
+path = sys.executable
+eel_path = path.replace('python.exe', '') + 'lib\\site-packages\\eel\\eel.js'
 
 a = Analysis(['main.py'],
              pathex=['./'],
