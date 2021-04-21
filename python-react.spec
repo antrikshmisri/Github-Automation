@@ -1,11 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
 block_cipher = None
-eel_path = os.getenv('EEL_PATH')
+eel_path = '/opt/buildhome/python3.7/lib/python3.7/site-packages/eel/eel.js'
 
 a = Analysis(['main.py'],
              pathex=['./'],
