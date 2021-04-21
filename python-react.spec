@@ -1,12 +1,13 @@
 # -*- mode: python ; coding: utf-8 -*-
-
+import sys
 block_cipher = None
-
+path = sys.executable
+eel_path = path.replace('python.exe', '') + 'lib\\site-packages\\eel\\eel.js'
 
 a = Analysis(['main.py'],
-             pathex=['D:\\webDev\\react-projects\\python-react'],
+             pathex=['./'],
              binaries=[],
-             datas=[('C:\\Users\\antri\\AppData\\Local\\Programs\\Python\\Python38-32\\lib\\site-packages\\eel\\eel.js', 'eel'), ('build', 'build')],
+             datas=[(eel_path, 'eel'), ('build', 'build')],
              hiddenimports=['bottle_websocket'],
              hookspath=[],
              runtime_hooks=[],
