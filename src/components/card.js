@@ -7,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const Card = (props) => {
   return (
     <Col className=" file-card" md={"6"}>
+      {props.children}
+      {props.loading ? <div className='dim-overlay'/> : <></>}
       <div className="file-content">
         <h1>
           <span>
