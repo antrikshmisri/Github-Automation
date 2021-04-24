@@ -8,12 +8,15 @@ import useJsonFile from "../hooks/useJsonFile";
 import useArray from "../hooks/useArray";
 import { eel } from "../eel.js";
 import { useEffect, useState } from "react";
+import FadeLoader from 'react-spinners/FadeLoader'
+import spinnerStyle from '../constants/spinnerStyle'
 // import tmp from "../scripts/tmp.json";
 
 const Commit = () => {
   const [jsonData, setJsonData] = useJsonFile("./tmp.json");
   const [message, setMessage] = useArray(jsonData.length);
   const [info, setInfo] = useState([]);
+  const [isLoading, setLoading] = useState(false)
   const dirValue = localStorage.getItem("dirValue");
 
   useEffect(() => {
@@ -22,6 +25,7 @@ const Commit = () => {
 
   const handleSubmit = (file, diff, message, idx, event) => {
     event.preventDefault();
+    setLoading(true)
     if (event.target.name === "discard") {
       setMessage("-r", idx);
     }
@@ -34,7 +38,7 @@ const Commit = () => {
       url,
       branch
     )((ret) => {
-      console.log(ret);
+      setLoading(false)
       ret ? console.log("Pushed!") : console.log("Reverted");
     });
   };
@@ -57,6 +61,7 @@ const Commit = () => {
                         key={idx}
                         heading={file.path.split("\\").pop()}
                         content={file.changes}
+                        loading={isLoading}
                         onChange={(e) => {
                           handleChange(e, idx);
                         }}
@@ -64,7 +69,9 @@ const Commit = () => {
                           handleSubmit(file.path, file.changes, message, idx, e);
                         }}
                         value={message[idx]}
-                      />
+                      >
+                        <FadeLoader color={'#fff'} loading={isLoading} className="spinner" css={spinnerStyle}/>
+                      </Card>
                     </Carousel.Item>
                   );
                 })}
