@@ -4,7 +4,6 @@ from .colors import logcolors
 from . import filechange
 
 buildpath = os.path.join(os.path.dirname(os.getcwd()) , 'build')
-jsonpath = ''
 if(not os.path.isdir(buildpath)):
     jsonpath = os.path.join(os.getcwd(), 'public','tmp.json')
 else:
