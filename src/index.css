@@ -213,7 +213,20 @@ input[name = "install"]
   padding: 5px 5px;
   border-radius: 10px;
 }
-
+.dim-overlay
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  min-width: 100%;
+  min-height: 100%;
+  background: #212529;
+  opacity: 0.8;
+  box-shadow: inset 0 0 2000px #21252980;
+  filter: blur(5px);
+  z-index: 5;
+}
 .file-card h1
 {
   border-bottom: 3px solid #E9ECEF;
