@@ -55,7 +55,7 @@ def commitAndUpdate(path,file,idx,msg,url,branch):
     commit_response = git.commit(msg)
     if(not commit_response):
         print(f'{logcolors.ERROR}Reverting Push{logcolors.ENDC}')
-        # updatedata(changedfile, diffarr)
+        updatedata(idx)
     else:
         print(f'{logcolors.SUCCESS}Updating Logs{logcolors.ENDC}')
         updatedata(idx)
