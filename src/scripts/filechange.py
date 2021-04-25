@@ -5,7 +5,7 @@ from .utils import getNestedFiles, read_file
 import time
 
 
-def ischanged(url, branch, path):
+def ischanged(path):
     from .logger import writedata
     ignoredirs = getIgnoreFiles(path)
     # gets the list of all nested files
