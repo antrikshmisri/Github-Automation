@@ -5,7 +5,7 @@ from .logger import *
 import sys
 
 def init(url , branch , path):
-    checkdata(url , branch,path)
+    checkdata(path)
 
 
 
