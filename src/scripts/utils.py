@@ -24,25 +24,18 @@ def read_file(onlyfiles):
     filecontent = []
     for file in onlyfiles:
         with open(onlyfiles[onlyfiles.index(file)], "r") as f:
-            filecontent.append(f.readlines())
+            try:
+                filecontent.append(f.readlines())
+            except UnicodeDecodeError:
+                continue
     return filecontent
 
-def initCommands(info):
-    import os
+def initCommands(info, path):
     from .gitcommands import git_commands
     from . import filechange
-    git = git_commands(os.getcwd())
-    url,branch = info
-    info.remove('n')
-    git.init()
-    git.createReadme()
-    git.add(['.'])
-    git.commit(['README.md'])
-    git.setBranch(branch)
-    git.setremote(url)
-    git.push(url, branch)
-    print('initial setup done :)')
-    filechange.ischanged(url, branch)
+    git = git_commands(path)
+    git.initRepository(info)
+    filechange.ischanged(path)
 
 def commitAndUpdate(path,file,idx,msg,url,branch):
     from .gitcommands import git_commands
