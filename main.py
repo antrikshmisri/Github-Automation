@@ -1,22 +1,18 @@
 import eel
 import sys
-from src.scripts import repoInfo, utils
-import os
 import threading
-
-@eel.expose
-def getpara(arg):
-    return f"You passed {arg}"
 
 
 @eel.expose
 def getInfo(path):
+    from src.scripts import repoInfo
     info = repoInfo.checkinfoInDir(path)
     return info
 
 
 @eel.expose
 def checkPath(path):
+    from src.scripts import  utils
     return utils.checkPath(path)
 
 
@@ -25,6 +21,7 @@ def init(url, branch, path):
     from src.scripts import main
     t1 = threading.Thread(target=main.init , args=(url, branch, path)) 
     t1.start()
+
 
 @eel.expose
 def commitAndUpdate(path , file , diff , msg , url , branch):
