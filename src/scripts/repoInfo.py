@@ -16,8 +16,8 @@ def checkinfoInDir(path , *args , **kwargs):
     infofile = os.path.join(path , '.git/config')
     git = git_commands(path)
     if (os.path.exists(infofile)):
-        url = git.getremote()
-        branch = git.getbranch()                          
+        url = git.getRemote()
+        branch = git.getBranch()                          
         url, branch = url.split('\n')[0], branch.split('\n')[0].split('/')[2]
         info = [url, branch]
         return info
