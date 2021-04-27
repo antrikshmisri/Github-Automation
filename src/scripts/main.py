@@ -4,7 +4,7 @@ import pyfiglet
 from .logger import *
 import sys
 
-def init(url , branch , path):
+def init(path):
     checkdata(path)
 
 
