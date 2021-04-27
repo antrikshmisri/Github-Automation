@@ -48,7 +48,7 @@ const Splash = () => {
               reactSwal.fire(messages.noRemote).then((value) => {
                 let [url, branch] = value.value;
                 // run python entrypoint script
-                eel.init(url, branch, dirValue)
+                eel.initRepository([url, branch], dirValue)
                 nextPage()
               })
               .catch(err => {
@@ -60,7 +60,7 @@ const Splash = () => {
                 ...messages.foundRemote,
                 html: `<a onclick="window.open('${url}', '${url}')" href="javascript:void()">${url}</a> <br/> <p>${branch}</p>`,
               }).then(value => {
-                eel.init(url, branch, dirValue)
+                eel.init(dirValue)
                 nextPage()
               })
             }
