@@ -17,9 +17,9 @@ def checkPath(path):
 
 
 @eel.expose
-def init(url, branch, path):
+def init(path):
     from src.scripts import main
-    t1 = threading.Thread(target=main.init , args=(url, branch, path)) 
+    t1 = threading.Thread(target=main.init , args=(path,)) 
     t1.start()
 
 
@@ -27,6 +27,11 @@ def init(url, branch, path):
 def commitAndUpdate(path , file , diff , msg , url , branch):
     from src.scripts.utils import commitAndUpdate
     commitAndUpdate(path , file , diff , msg , url , branch)
+
+@eel.expose
+def initRepository(info, path):
+    from src.scripts.utils import initCommands
+    initCommands(info, path)
 
 
 if __name__ == '__main__':
