@@ -1,3 +1,4 @@
+import os
 from subprocess import call, Popen, PIPE
 from sys import platform as _platform
 from .colors import logcolors
@@ -6,6 +7,7 @@ from os.path import join
 
 class git_commands:
     def __init__(self, path):
+        self.current_directory = os.getcwd()
         self.path = path
         self.git_path = join(self.path, '.git')
         self.git_command = f'git --git-dir={self.git_path} --work-tree={self.path}'
@@ -14,18 +16,19 @@ class git_commands:
         """
         Initializes git repository by calling git init
         """
-        call(f'{self.git_command} init')
+        os.chdir(self.path)
+        call(f'git init')
+        os.chdir(self.current_directory)
 
     def createReadme(self):
         """
         Creates README.md if during the git repository initialization
         """
-        if _platform == "linux" or _platform == "linux2":
-            call('touch README.md')
-        elif _platform == "darwin":
-            call('touch README.md')
-        elif _platform == "win32":
-            call('type nul>README.md')
+        readme_path = os.path.join(self.path, 'README.md')
+        dir = self.path.split('\\')[-1]
+        with open(readme_path, 'w') as readme:
+            readme.write(f'# {dir}')
+            readme.close()
 
     def add(self, file):
         """
@@ -83,7 +86,7 @@ class git_commands:
         branch: str
             Working branch 
         """
-        call(f'{self.git_command} git branch -M {branch}')
+        call(f'{self.git_command} branch -M {branch}')
 
     def push(self, url, branch):
         """
@@ -128,7 +131,7 @@ class git_commands:
         self.init()
         self.createReadme()
         self.add('.')
-        self.commit('added README.md')
+        self.commit('initial commit')
         self.setBranch(branch)
         self.setRemote(url)
         self.push(url, branch)
