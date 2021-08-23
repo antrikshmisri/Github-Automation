@@ -1,8 +1,10 @@
 # Github Automation
+<img src ="https://i.imgur.com/KH1UjQq.png">
+<br>
 
-<img src="./readme_images/splash.png">
-<img src="./readme_images/home.png">
-<img src="./readme_images/commit.png">
+## Installation ⬇️
+
+Download the setup for Github - Automation from [here](https://github.com/antrikshmisri/Github-Automation/releases/download/1.1/gauto.exe) or get the executable from [here](https://github.com/antrikshmisri/Github-Automation/releases/download/1.0/release-1.0.zip)
 
 ## What is it about :confused:?
 
@@ -38,3 +40,8 @@ npm install
 ```bash
 yarn start
 ```
+
+## Preview Images
+<img src="./readme_images/splash.png">
+<img src="./readme_images/home.png">
+<img src="./readme_images/commit.png">
