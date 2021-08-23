@@ -29,7 +29,6 @@ def ischanged(path):
                     changeditem.append(ele)
             # calculating changed file's name
             filename = onlyfiles[current.index(changeditem[0])]
-            print(changeditem[0], filename)
             # Calculating Diff for previous and changed version of file
             diff = calcDiff(previtem, changeditem[0])
             writedata(path=filename, diff=diff)

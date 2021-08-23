@@ -55,9 +55,9 @@ def checkdata(path):
             initdata = json.load(file)
         if(len(initdata) == 0):
             print(f'{logcolors.SUCCESS}Change tree clean{logcolors.ENDC}')
-            filechange.ischanged(path)
         else:
             print(f'{logcolors.SUCCESS}Found Some Changes{logcolors.ENDC}')
-            filechange.ischanged(path)
+            
+        filechange.ischanged(path)
     else:
         print(f'{logcolors.ERROR}No changes found from previous session{logcolors.ENDC}')

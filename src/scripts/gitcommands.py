@@ -1,6 +1,5 @@
 import os
 from subprocess import call, Popen, PIPE
-from sys import platform as _platform
 from .colors import logcolors
 from os.path import join
 
