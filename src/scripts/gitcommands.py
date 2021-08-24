@@ -33,7 +33,7 @@ class git_commands:
         """
         Stages a changed file by calling git add <filename>
 
-        Attributes
+        Parameters
         ----------
         file: str
             filename that needs to be staged
@@ -47,7 +47,7 @@ class git_commands:
         """
         Commits the changed file with a message by calling git commit -m <message>
 
-        Attributes
+        Parameters
         ----------
         msg: str
             commit the changed file with the specified message
@@ -69,7 +69,7 @@ class git_commands:
         """
         Set the remote repository to the specified URL
 
-        Attributes
+        Parameters
         ----------
         url: str
             URL of the remote repository
@@ -80,7 +80,7 @@ class git_commands:
         """
         Set the working branch to the specified branch
 
-        Attributes
+        Parameters
         ----------
         branch: str
             Working branch 
@@ -91,7 +91,7 @@ class git_commands:
         """
         Push the staged and commited changes to the remote URL/branch
 
-        Attributes
+        Parameters
         ----------
         url: str
             URL of the remote repository
@@ -117,11 +117,36 @@ class git_commands:
                        stdout=PIPE).stdout.read().decode('utf-8')
         return branch
     
+    def pull(self, url, branch):
+        """
+        Pull the changes from the remote URL/branch
+
+        Parameters
+        ----------
+        url: str
+            URL of the remote repository
+        branch: str
+            Working branch
+        """
+        call(f'{self.git_command} pull {url} {branch}')
+    
+    def diff(self, file):
+        """
+        Get the diff of the file
+        
+        Parameters
+        ----------
+        file: str
+            Name of the file whose diff is to be fetched
+        """
+        diff = Popen(f'{self.git_command} diff {file}', stdout=PIPE).stdout.read().decode('utf-8')
+        return diff
+
     def initRepository(self, info):
         """
         If directory is git initialized, perform starting git commands
 
-        Attributes
+        Parameters
         ----------
         info: list
             Contains URL at 0th, branch at 1st index
