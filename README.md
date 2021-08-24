@@ -45,3 +45,4 @@ yarn start
 <img src="./readme_images/splash.png">
 <img src="./readme_images/home.png">
 <img src="./readme_images/commit.png">
+<img src="./readme_images/diff.png">
