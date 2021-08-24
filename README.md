@@ -6,11 +6,11 @@
 
 Download the setup for Github - Automation from [here](https://github.com/antrikshmisri/Github-Automation/releases/download/1.1/gauto.exe) or get the executable from [here](https://github.com/antrikshmisri/Github-Automation/releases/download/1.0/release-1.0.zip)
 
-## What is it about :confused:?
+## What is it about?
 
 Are you tired of writing the same git commands over and over again? If so, this project can help you reduce that effort significantly. The app does this by automating a lot of stuff for you. The user just has to enter the commit message for the changed file, rest the app handles everything for the user.
 
-## Features of Github - Automation :sparkles:
+## Features of Github - Automation
 
 1. Removes repition of entering same git commands
 2. Displays the changed `file` along with its `diff` for making it easy to write commit messages
@@ -24,7 +24,7 @@ The front-end of Github - Automation is written in `ReactJS`, the logical/pseudo
 
 This is not a browser based application, rather it is a standalone executable application. This is achieved by yet another module named `pyinstaller`, the `.exe` file runs the python scripts on top of the production build of the `React-App`.
 
-## How to Run :runner:?
+## How to Run?
 
 To run the app in development environment, follow the steps below:-
 
