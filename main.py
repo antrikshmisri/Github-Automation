@@ -18,7 +18,10 @@ def checkPath(path):
 
 @eel.expose
 def init(path):
-    from src.scripts import main
+    from src.scripts import main, gitcommands
+    url, branch = getInfo(path)
+    git = gitcommands.git_commands(path)
+    git.pull(url, branch)
     t1 = threading.Thread(target=main.init , args=(path,)) 
     t1.start()
 
@@ -28,10 +31,18 @@ def commitAndUpdate(path , file , diff , msg , url , branch):
     from src.scripts.utils import commitAndUpdate
     commitAndUpdate(path , file , diff , msg , url , branch)
 
+
 @eel.expose
 def initRepository(info, path):
     from src.scripts.utils import initCommands
     initCommands(info, path)
+
+
+@eel.expose
+def getDiff(path, file):
+    from src.scripts.gitcommands import git_commands
+    git = git_commands(path)
+    return git.diff(file)
 
 
 if __name__ == '__main__':
