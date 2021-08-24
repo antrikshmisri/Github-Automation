@@ -60,6 +60,7 @@ const Commit = () => {
                       <Card
                         key={idx}
                         heading={file.path.split("\\").pop()}
+                        fullPath={file.path}
                         content={file.changes}
                         loading={isLoading}
                         onChange={(e) => {
