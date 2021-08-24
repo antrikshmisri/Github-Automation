@@ -9,7 +9,9 @@ const useJsonFile = (fileName) => {
       })
       .then((data) => {
         setJsonData(data);
-        console.log(jsonData)
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, []);
 
