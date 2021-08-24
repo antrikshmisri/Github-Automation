@@ -3,9 +3,19 @@ import Button from "../components/button";
 import TextField from "../components/textfield";
 import { Col, Container, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import DiffViewer from "./diffViewer";
+import { eel } from "../eel";
 
 const Card = (props) => {
+  const dirValue = localStorage.getItem('dirValue')
+  const [diff, setDiff] = React.useState(null);
+  const [showDiffContainer, setShowDiffContainer] = React.useState(false);
+
+  eel.getDiff(dirValue, props.fullPath)(diff => {
+    setDiff(diff);
+  })
   return (
+    <>
     <Col className=" file-card" md={"6"}>
       {props.children}
       {props.loading ? <div className='dim-overlay'/> : <></>}
@@ -54,8 +64,20 @@ const Card = (props) => {
             </Col>
           </Row>
         </form>
+        <Row>
+          <Col md={6}></Col>
+          <Col className="diff-btn" md={6}>
+          <a
+            onClick={() => {setShowDiffContainer(true)}}
+            color="#343A40"
+            className="diff-btn"
+          >Raw Diff</a>
+          </Col>
+        </Row>
       </Container>
+      {showDiffContainer ? <DiffViewer diff={diff} setShowDiffContainer={setShowDiffContainer}/> : <></>}
     </Col>
+    </>
   );
 };
 
