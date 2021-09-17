@@ -1,12 +1,15 @@
 {
-  "name": "python-react",
+  "name": "github-automation",
   "version": "0.1.0",
   "private": true,
+  "main": "public/main.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.6.0",
+    "custom-electron-titlebar": "^3.2.7",
+    "electron": "^14.0.1",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.0",
     "react-dom": "^17.0.1",
@@ -21,9 +24,9 @@
     "start:js": "react-scripts start",
     "build:js": "react-scripts build",
     "start:eel": "python main.py --develop",
-    "build:eel": "python -m eel python-react.spec build --onefile --noconsole --name python-react",
+    "build:eel": "python -m eel python-react.spec build --onefile --noconsole --name gauto",
     "start": "npm-run-all -p start:*",
-    "build": "npm-run-all build:*",
+    "build": "python ./src/scripts/clean_build.py && npm-run-all build:*",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
