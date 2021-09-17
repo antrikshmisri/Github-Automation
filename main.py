@@ -57,14 +57,7 @@ def getDiff(path, file):
 
 def bind_function_docstrings():
     """Bind the docstring of original function to the exposed function."""
-    all_exposed_functions = [
-        getInfo,
-        checkPath,
-        init,
-        commitAndUpdate,
-        initRepository,
-        getDiff
-    ]
+    all_exposed_functions = list(eel._exposed_functions.values())
     for function in all_exposed_functions:
         function_name = function.__name__
         function.__doc__ = DOCSTRING_DICT[function_name] or ""
