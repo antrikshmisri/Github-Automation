@@ -1,5 +1,6 @@
-# Github Automation
-<img src ="https://i.imgur.com/KH1UjQq.png">
+<div align="center"><img src="https://i.imgur.com/XPJWpyd.png"/></div>
+
+<!-- <div align="center"><img width="600px" src ="https://i.imgur.com/KH1UjQq.png"></div> -->
 <br>
 
 ## Installation ⬇️
