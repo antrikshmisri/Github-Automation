@@ -1,7 +1,11 @@
 # -*- mode: python ; coding: utf-8 -*-
+import sys
+import os
+import imp
 
 block_cipher = None
-eel_path = '/opt/buildhome/python3.7/lib/python3.7/site-packages/eel/eel.js'
+eel_path = imp.find_module('eel')[1]
+eel_path = os.path.join(eel_path, 'eel.js')
 
 a = Analysis(['main.py'],
              pathex=['./'],
@@ -42,8 +46,8 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='python-react',
-          debug=True,
+          name='gauto',
+          debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
