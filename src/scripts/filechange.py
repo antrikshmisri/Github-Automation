@@ -1,4 +1,3 @@
-
 from .diffcalc import *
 from .ignore import getIgnoreFiles
 from .utils import getNestedFiles, read_file
