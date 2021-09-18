@@ -65,9 +65,11 @@ def bind_function_docstrings():
 
 if __name__ == '__main__':
     bind_function_docstrings()
-    _electron_path = os.path.join(os.getcwd(), "node_modules/electron/dist/electron.exe")
+    _electron_path = os.path.join(
+        os.getcwd(), "node_modules/electron/dist/electron.exe")
     if not os.path.isfile(_electron_path):
-        raise Exception(f'Electron not found in path {_electron_path}.\nPlease install using npm i electron')
+        raise Exception(
+            f'Electron not found in path {_electron_path}.\nPlease install using npm i electron')
 
     if len(sys.argv) > 1:
         if sys.argv[1] == '--develop':
@@ -83,10 +85,9 @@ if __name__ == '__main__':
     else:
         eel.init('build')
         eel.browsers.set_path('electron', _electron_path)
-        eel.start('', 
-            options={
-                'port': 8888,
-                'host': 'localhost',
-                'args': [_electron_path, '.'],
-            }, suppress_error=True, size=(1000, 600), mode="electron")
-
+        eel.start('',
+                  options={
+                      'port': 8888,
+                      'host': 'localhost',
+                      'args': [_electron_path, '.'],
+                  }, suppress_error=True, size=(1000, 600), mode="electron")
