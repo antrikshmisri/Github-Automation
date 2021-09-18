@@ -7,25 +7,21 @@ import Card from "../components/card";
 import useJsonFile from "../hooks/useJsonFile";
 import useArray from "../hooks/useArray";
 import { eel } from "../eel.js";
-import { useEffect, useState } from "react";
-import FadeLoader from 'react-spinners/FadeLoader'
-import spinnerStyle from '../constants/spinnerStyle'
+import { useState } from "react";
+import FadeLoader from "react-spinners/FadeLoader";
+import spinnerStyle from "../constants/spinnerStyle";
 // import tmp from "../scripts/tmp.json";
 
 const Commit = () => {
-  const [jsonData, setJsonData] = useJsonFile("./tmp.json");
+  const [jsonData, ] = useJsonFile("./tmp.json");
   const [message, setMessage] = useArray(jsonData.length);
-  const [info, setInfo] = useState([]);
-  const [isLoading, setLoading] = useState(false)
+  const [info, ] = useState([]);
+  const [isLoading, setLoading] = useState(false);
   const dirValue = localStorage.getItem("dirValue");
-
-  useEffect(() => {
-    setInfo(localStorage.getItem("repoInfo").split(","));
-  }, []);
 
   const handleSubmit = (file, diff, message, idx, event) => {
     event.preventDefault();
-    setLoading(true)
+    setLoading(true);
     if (event.target.name === "discard") {
       setMessage("-r", idx);
     }
@@ -38,7 +34,7 @@ const Commit = () => {
       url,
       branch
     )((ret) => {
-      setLoading(false)
+      setLoading(false);
       ret ? console.log("Pushed!") : console.log("Reverted");
     });
   };
@@ -67,18 +63,31 @@ const Commit = () => {
                           handleChange(e, idx);
                         }}
                         onSubmit={(e) => {
-                          handleSubmit(file.path, file.changes, message, idx, e);
+                          handleSubmit(
+                            file.path,
+                            file.changes,
+                            message,
+                            idx,
+                            e
+                          );
                         }}
                         value={message[idx]}
                       >
-                        <FadeLoader color={'#fff'} loading={isLoading} className="spinner" css={spinnerStyle}/>
+                        <FadeLoader
+                          color={"#fff"}
+                          loading={isLoading}
+                          className="spinner"
+                          css={spinnerStyle}
+                        />
                       </Card>
                     </Carousel.Item>
                   );
                 })}
               </Carousel>
             ) : (
-              <h1 style={{ opacity: "0.5" , textAlign: "center" }}>All set! No changes to push</h1>
+              <h1 style={{ opacity: "0.5", textAlign: "center" }}>
+                All set! No changes to push
+              </h1>
             )}
           </Col>
         </Row>

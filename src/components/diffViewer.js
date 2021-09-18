@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 const DiffViewer = ({ diff, setShowDiffContainer }) => {
   const diffLines = diff.length?diff.split("\n"):[];

@@ -13,7 +13,7 @@ const Home = () => {
     history.push(page);
   };
   
-  const [jsonData , setJsonData] = useJsonFile('tmp.json')
+  const [jsonData , ] = useJsonFile('tmp.json')
   return (
     <>
       <Header />
