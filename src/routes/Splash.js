@@ -56,6 +56,7 @@ const Splash = () => {
               });
             } else {
               let [url , branch] = info
+              setInfo(info)
               swal.fire({
                 ...messages.foundRemote,
                 html: `<a onclick="window.open('${url}', '${url}')" href="javascript:void()">${url}</a> <br/> <p>${branch}</p>`,
