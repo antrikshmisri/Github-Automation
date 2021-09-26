@@ -2,6 +2,7 @@ from os.path import isdir
 
 
 def getMaxSpaces(file):
+    """Get maximum spaces to span a file."""
     max = float('-inf')
     for ele in file:
         ele = ele.strip()
@@ -9,7 +10,17 @@ def getMaxSpaces(file):
             max = len(ele)
     return max
 
+
 def getNestedFiles(rootDir,ignoredirs):
+    """Get nested files from the root directory.
+    
+    Parameters
+    ----------
+    rootDir : str
+        The root directory to search for files.
+    ignoredirs : list
+        List of directories to ignore.
+    """
     from os import walk
     from os.path import join
     nestfiles = []
@@ -21,6 +32,13 @@ def getNestedFiles(rootDir,ignoredirs):
 
 
 def read_file(onlyfiles):
+    """Read the file and return the content.
+    
+    Parameters
+    ----------
+    onlyfiles : list
+        List of files to read.
+    """
     filecontent = []
     for file in onlyfiles:
         with open(onlyfiles[onlyfiles.index(file)], "r") as f:
@@ -31,6 +49,15 @@ def read_file(onlyfiles):
     return filecontent
 
 def initCommands(info, path):
+    """Git commands to initialize a repository.
+    
+    Parameters
+    ----------
+    info: list
+        List containing URL and branch.
+    path: str
+        Path to the local repository.
+    """
     from .gitcommands import git_commands
     from . import filechange
     git = git_commands(path)

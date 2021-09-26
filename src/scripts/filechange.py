@@ -5,6 +5,17 @@ import time
 
 
 def ischanged(path):
+    """Function to monitor changed files
+
+    Note: This function will be depricated in the future and
+    will be replaced by a global event listener that will handle
+    all events including changed files/folders. 
+
+    Parameters
+    ----------
+    path : str
+        Path to the root directory which is to be monitored.
+    """
     from .logger import writedata
     ignoredirs = getIgnoreFiles(path)
     # gets the list of all nested files

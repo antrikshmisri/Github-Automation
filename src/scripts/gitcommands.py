@@ -5,6 +5,19 @@ from os.path import join
 
 
 class git_commands:
+    """Class that provides various git operations as functions.
+    
+    Attributes
+    ----------
+    current_directory: str
+        Current working directory
+    path: str
+        Path of the git repository
+    git_path: str
+        Path of the .git repository
+    git_command: str
+        Base git command which is used in all git operations.
+    """
     def __init__(self, path):
         self.current_directory = os.getcwd()
         self.path = path
@@ -12,17 +25,13 @@ class git_commands:
         self.git_command = f'git --git-dir={self.git_path} --work-tree={self.path}'
 
     def init(self):
-        """
-        Initializes git repository by calling git init
-        """
+        """Initializes git repository by calling git init"""
         os.chdir(self.path)
         call(f'git init')
         os.chdir(self.current_directory)
 
     def createReadme(self):
-        """
-        Creates README.md if during the git repository initialization
-        """
+        """Creates README.md if during the git repository initialization"""
         readme_path = os.path.join(self.path, 'README.md')
         dir = self.path.split('\\')[-1]
         with open(readme_path, 'w') as readme:
@@ -102,17 +111,13 @@ class git_commands:
         
 
     def getRemote(self):
-        """
-        Get the remote URL from the local directory
-        """
+        """Get the remote URL from the local directory"""
         remote = Popen(f'{self.git_command} config --get remote.origin.url',
                        stdout=PIPE).stdout.read().decode('utf-8')
         return remote
 
     def getBranch(self):
-        """
-        Get the working branch from the local directory
-        """
+        """Get the working branch from the local directory"""
         branch = Popen(f'{self.git_command} rev-parse --symbolic-full-name HEAD',
                        stdout=PIPE).stdout.read().decode('utf-8')
         return branch

@@ -3,6 +3,7 @@ import os
 from .colors import logcolors
 from . import filechange
 
+# Get the path of json file based the application environment
 buildpath = os.path.join(os.path.dirname(os.getcwd()) , 'build')
 if(not os.path.isdir(buildpath)):
     jsonpath = os.path.join(os.getcwd(), 'public','tmp.json')
@@ -13,6 +14,7 @@ buffer = []
 
 
 def writedata(*args, **kwargs):
+    """Write data to the json file."""
     data = {}
     global buffer
     readdata = []
@@ -34,6 +36,7 @@ def writedata(*args, **kwargs):
 
 
 def updatedata(idx):
+    """Update the data in json file"""
     if(os.path.getsize(jsonpath) > 0):
         with open(jsonpath, 'r') as file:
             readdata = json.load(file)
@@ -50,6 +53,7 @@ def updatedata(idx):
 
 
 def checkdata(path):
+    """Check what is the status of changes."""
     if(os.path.getsize(jsonpath) > 0):
         with open(jsonpath, 'r') as file:
             initdata = json.load(file)
