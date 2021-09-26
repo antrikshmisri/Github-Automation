@@ -1,11 +1,12 @@
 import os
 import sys
 import threading
+from subprocess import Popen, PIPE
 import eel
 import eel.browsers
 
 from src.scripts import repoInfo, main, gitcommands, utils
-from src.scripts.utils import commitAndUpdate, initCommands
+from src.scripts.utils import initCommands
 from src.scripts.gitcommands import git_commands
 
 
@@ -14,9 +15,49 @@ DOCSTRING_DICT = {}
 DOCSTRING_DICT['getInfo'] = repoInfo.checkinfoInDir.__doc__
 DOCSTRING_DICT['checkPath'] = utils.checkPath.__doc__
 DOCSTRING_DICT['init'] = gitcommands.git_commands.pull.__doc__
-DOCSTRING_DICT['commitAndUpdate'] = commitAndUpdate.__doc__
+DOCSTRING_DICT['commitAndUpdate'] = utils.commitAndUpdate.__doc__
 DOCSTRING_DICT['initRepository'] = initCommands.__doc__
 DOCSTRING_DICT['getDiff'] = gitcommands.git_commands.diff.__doc__
+
+
+def fetch_npm_package(package_name):
+    """Fetch a package using node package manager.
+    
+    Parameters
+    ----------
+    package_name: str
+        Name of the package.
+    """
+    npm_out = Popen(f'npm install --global {package_name}',
+                    stdout=PIPE, shell=True).stdout.read().decode('utf-8')
+
+    if 'npm ERR!' in npm_out:
+        print(f'Error installing {package_name}')
+        return ""
+
+    return npm_out
+
+def get_electron_bin():
+    """Get the binaries for electron using npm.
+    
+    Returns
+    -------
+    path
+        The path to the electron binaries.
+    """
+    os_name = os.name
+    if os_name == 'nt':
+        user_path = os.path.expanduser('~')
+        node_modules_path = os.path.join(user_path, 'AppData', 'Roaming', 'npm', 'node_modules')
+        electron_path = os.path.join(node_modules_path, 'electron', 'dist', 'electron.exe')
+        return electron_path
+    elif os_name == 'posix':
+        user_path = os.path.expanduser('~')
+        node_modules_path = os.path.join(user_path, '.npm', 'node_modules')
+        electron_path = os.path.join(node_modules_path, 'electron', 'dist', 'electron')
+        return electron_path
+    else:
+        raise ValueError(f'{os_name} currently not supported.')
 
 
 @eel.expose
@@ -41,7 +82,7 @@ def init(path):
 
 @eel.expose
 def commitAndUpdate(path, file, diff, msg, url, branch):
-    commitAndUpdate(path, file, diff, msg, url, branch)
+    utils.commitAndUpdate(path, file, diff, msg, url, branch)
 
 
 @eel.expose
@@ -65,14 +106,15 @@ def bind_function_docstrings():
 
 if __name__ == '__main__':
     bind_function_docstrings()
-    _electron_path = os.path.join(
-        os.getcwd(), "node_modules/electron/dist/electron.exe")
-    if not os.path.isfile(_electron_path):
-        raise Exception(
-            f'Electron not found in path {_electron_path}.\nPlease install using npm i electron')
 
     if len(sys.argv) > 1:
         if sys.argv[1] == '--develop':
+            _electron_path = os.path.join(
+            os.getcwd(), "node_modules/electron/dist/electron.exe")
+            if not os.path.isfile(_electron_path):
+                raise Exception(
+                    f'Electron not found in path {_electron_path}.\nPlease install using npm i electron')
+
             eel.init('src')
             eel.browsers.set_path('electron', _electron_path)
             eel.start({
@@ -83,6 +125,19 @@ if __name__ == '__main__':
                 'args': [_electron_path, '.'],
             }, suppress_error=True, size=(1000, 600), mode="electron")
     else:
+        _electron_path = get_electron_bin()
+
+        if not os.path.isfile(_electron_path):
+            print('Warning: Electron not found in global packages\n'\
+                    'Trying to install through npm....')
+
+            npm_out = fetch_npm_package('electron')
+            if not len(npm_out):
+                raise Exception("Something went wrong, couldn't install electron.")
+            else:
+                print(npm_out[:100] + '...')
+
+        print(_electron_path)
         eel.init('build')
         eel.browsers.set_path('electron', _electron_path)
         eel.start('',
