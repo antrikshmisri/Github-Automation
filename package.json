@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.6.0",
+    "concurrently": "^6.2.1",
     "custom-electron-titlebar": "^3.2.7",
     "electron": "^14.0.1",
     "react": "^17.0.1",
@@ -18,6 +19,7 @@
     "react-spinners": "^0.10.6",
     "sweetalert2": "^10.15.5",
     "sweetalert2-react-content": "^3.3.1",
+    "wait-on": "^6.0.0",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -25,7 +27,7 @@
     "build:js": "react-scripts build",
     "start:eel": "python main.py --develop",
     "build:eel": "python -m eel python-react.spec build --onefile --noconsole --name gauto",
-    "start": "npm-run-all -p start:*",
+    "start": "concurrently \"yarn start:js\" \"wait-on http://localhost:3000/ && yarn start:eel\"",
     "build": "python ./src/scripts/clean_build.py && npm-run-all build:*",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
