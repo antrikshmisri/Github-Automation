@@ -52,7 +52,7 @@ def get_electron_bin():
         electron_path = os.path.join(node_modules_path, 'electron', 'dist', 'electron.exe')
         return electron_path
     elif os_name == 'posix':
-        user_path = os.path.expanduser('~')
+        user_path = 'root'
         node_modules_path = os.path.join(user_path, 'local', 'lib', 'node_modules')
         electron_path = os.path.join(node_modules_path, 'electron', 'dist', 'electron')
         return electron_path
