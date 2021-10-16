@@ -12,8 +12,8 @@ const Home = () => {
     let page = "/commit";
     history.push(page);
   };
-  
-  const [jsonData , ] = useJsonFile('tmp.json')
+
+  const [jsonData,] = useJsonFile('tmp.json')
   return (
     <>
       <Header />

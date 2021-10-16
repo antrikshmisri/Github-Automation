@@ -19,7 +19,7 @@ def ischanged(path):
     from .logger import writedata
     ignoredirs = getIgnoreFiles(path)
     # gets the list of all nested files
-    onlyfiles = getNestedFiles(path,ignoredirs)
+    onlyfiles = getNestedFiles(path, ignoredirs)
     # if uncommited data found perform git commands on them
     initial = list(read_file(onlyfiles))
     while True:

@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../components/button";
 import { useHistory } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
@@ -22,8 +22,8 @@ const Splash = () => {
   useEffect(() => {
     localStorage.setItem("dirValue", dirValue);
   }, [dirValue]);
-  
-  const [info , setInfo] = useRepoInfo()
+
+  const [info, setInfo] = useRepoInfo()
   // go to next page
   const nextPage = () => {
     let page = "/home";
@@ -42,32 +42,32 @@ const Splash = () => {
         swal.fire(messages.foundDirectory).then((value) => {
           // get remote info from directory
 
-            if (info.includes("n")) {
-              // get url , branch from alert inputs
+          if (info.includes("n")) {
+            // get url , branch from alert inputs
 
-              reactSwal.fire(messages.noRemote).then((value) => {
-                let [url, branch] = value.value;
-                // run python entrypoint script
-                eel.initRepository([url, branch], dirValue)
-                nextPage()
-              })
+            reactSwal.fire(messages.noRemote).then((value) => {
+              let [url, branch] = value.value;
+              // run python entrypoint script
+              eel.initRepository([url, branch], dirValue)
+              nextPage()
+            })
               .catch(err => {
                 console.log(err)
               });
-            } else {
-              let [url , branch] = info
-              setInfo(info)
-              swal.fire({
-                ...messages.foundRemote,
-                html: `<a onclick="window.open('${url}', '${url}')" href="javascript:void()">${url}</a> <br/> <p>${branch}</p>`,
-              }).then(value => {
-                eel.init(dirValue)
-                nextPage()
-              })
-            }
+          } else {
+            let [url, branch] = info
+            setInfo(info)
+            swal.fire({
+              ...messages.foundRemote,
+              html: `<a onclick="window.open('${url}', '${url}')" href="javascript:void()">${url}</a> <br/> <p>${branch}</p>`,
+            }).then(value => {
+              eel.init(dirValue)
+              nextPage()
+            })
+          }
 
         });
-      } 
+      }
       // if path not valid show noDir alert
       else {
         swal.fire(messages.noDirectory);

@@ -18,6 +18,7 @@ class git_commands:
     git_command: str
         Base git command which is used in all git operations.
     """
+
     def __init__(self, path):
         self.current_directory = os.getcwd()
         self.path = path
@@ -72,7 +73,6 @@ class git_commands:
             except Exception as e:
                 print(f"{logcolors.ERROR} {e} {logcolors.ENDC}")
                 return False
-            
 
     def setRemote(self, url):
         """
@@ -108,7 +108,6 @@ class git_commands:
             Working branch
         """
         call(f'{self.git_command} push -u {url} {branch}')
-        
 
     def getRemote(self):
         """Get the remote URL from the local directory"""
@@ -121,7 +120,7 @@ class git_commands:
         branch = Popen(f'{self.git_command} rev-parse --symbolic-full-name HEAD',
                        stdout=PIPE).stdout.read().decode('utf-8')
         return branch
-    
+
     def pull(self, url, branch):
         """
         Pull the changes from the remote URL/branch
@@ -134,7 +133,7 @@ class git_commands:
             Working branch
         """
         call(f'{self.git_command} pull {url} {branch}')
-    
+
     def diff(self, file):
         """
         Get the diff of the file
@@ -144,7 +143,8 @@ class git_commands:
         file: str
             Name of the file whose diff is to be fetched
         """
-        diff = Popen(f'{self.git_command} diff {file}', stdout=PIPE).stdout.read().decode('utf-8')
+        diff = Popen(f'{self.git_command} diff {file}',
+                     stdout=PIPE).stdout.read().decode('utf-8')
         return diff
 
     def initRepository(self, info):

@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Header(){
+function Header() {
     return (
         <div >
-        <header>
-            <h1 className = "text">Github - Automation</h1>
-        </header>
+            <header>
+                <h1 className="text">Github - Automation</h1>
+            </header>
         </div>
     )
 }

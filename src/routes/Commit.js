@@ -13,9 +13,9 @@ import spinnerStyle from "../constants/spinnerStyle";
 // import tmp from "../scripts/tmp.json";
 
 const Commit = () => {
-  const [jsonData, ] = useJsonFile("./tmp.json");
+  const [jsonData,] = useJsonFile("./tmp.json");
   const [message, setMessage] = useArray(jsonData.length);
-  const [info, ] = useState([]);
+  const [info,] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const dirValue = localStorage.getItem("dirValue");
 

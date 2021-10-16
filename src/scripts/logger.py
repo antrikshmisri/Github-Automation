@@ -4,11 +4,11 @@ from .colors import logcolors
 from . import filechange
 
 # Get the path of json file based the application environment
-buildpath = os.path.join(os.path.dirname(os.getcwd()) , 'build')
+buildpath = os.path.join(os.path.dirname(os.getcwd()), 'build')
 if(not os.path.isdir(buildpath)):
-    jsonpath = os.path.join(os.getcwd(), 'public','tmp.json')
+    jsonpath = os.path.join(os.getcwd(), 'public', 'tmp.json')
 else:
-    jsonpath = os.path.join(buildpath ,'tmp.json')
+    jsonpath = os.path.join(buildpath, 'tmp.json')
 
 buffer = []
 
@@ -28,7 +28,7 @@ def writedata(*args, **kwargs):
     elif(path and diff):
         data['path'] = path
         data['changes'] = diff
-        with open(jsonpath , 'r') as file:
+        with open(jsonpath, 'r') as file:
             readdata = json.load(file)
         with open(jsonpath, 'w') as file:
             readdata.append(data)
@@ -61,7 +61,8 @@ def checkdata(path):
             print(f'{logcolors.SUCCESS}Change tree clean{logcolors.ENDC}')
         else:
             print(f'{logcolors.SUCCESS}Found Some Changes{logcolors.ENDC}')
-            
+
         filechange.ischanged(path)
     else:
-        print(f'{logcolors.ERROR}No changes found from previous session{logcolors.ENDC}')
+        print(
+            f'{logcolors.ERROR}No changes found from previous session{logcolors.ENDC}')

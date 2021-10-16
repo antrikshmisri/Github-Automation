@@ -9,7 +9,7 @@ if __name__ == "__main__":
     if os.path.isdir(build_path):
         print('Removing build directory')
         rmtree(build_path)
-    
+
     if os.path.isdir(dist_path):
         print('Removing dist directory')
         rmtree(dist_path)

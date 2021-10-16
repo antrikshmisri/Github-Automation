@@ -11,7 +11,7 @@ def getMaxSpaces(file):
     return max
 
 
-def getNestedFiles(rootDir,ignoredirs):
+def getNestedFiles(rootDir, ignoredirs):
     """Get nested files from the root directory.
     
     Parameters
@@ -48,6 +48,7 @@ def read_file(onlyfiles):
                 continue
     return filecontent
 
+
 def initCommands(info, path):
     """Git commands to initialize a repository.
     
@@ -64,7 +65,8 @@ def initCommands(info, path):
     git.initRepository(info)
     filechange.ischanged(path)
 
-def commitAndUpdate(path,file,idx,msg,url,branch):
+
+def commitAndUpdate(path, file, idx, msg, url, branch):
     from .gitcommands import git_commands
     from .logger import updatedata
     from .colors import logcolors

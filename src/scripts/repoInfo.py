@@ -3,7 +3,7 @@ import os
 from .gitcommands import git_commands
 
 
-def takeInfo(url , branch):
+def takeInfo(url, branch):
     """Take the URL and Branch from the terminal.
     
     Parameters
@@ -26,7 +26,7 @@ def takeInfo(url , branch):
     return info
 
 
-def checkinfoInDir(path , *args , **kwargs):
+def checkinfoInDir(path, *args, **kwargs):
     """Get the URL and Branch from the local git initialized directory.
     
     Parameters
@@ -38,13 +38,13 @@ def checkinfoInDir(path , *args , **kwargs):
     -------
     list containing the URL and Branch or list containing 'n' if no info found.
     """
-    url = kwargs.get('url' , None)
-    branch = kwargs.get('branch' , None)
-    infofile = os.path.join(path , '.git/config')
+    url = kwargs.get('url', None)
+    branch = kwargs.get('branch', None)
+    infofile = os.path.join(path, '.git/config')
     git = git_commands(path)
     if (os.path.exists(infofile)):
         url = git.getRemote()
-        branch = git.getBranch()                          
+        branch = git.getBranch()
         url, branch = url.split('\n')[0], branch.split('\n')[0].split('/')[2]
         info = [url, branch]
         return info

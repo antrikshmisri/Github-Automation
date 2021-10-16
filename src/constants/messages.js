@@ -4,17 +4,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const RepoInputs = () => {
   return (
-      <Container>
-        <p style={{ margin: "1rem 1rem" }}>Add repo info here</p>
-        <Row>
-          <Col md={"6"}>
-            <TextField isRequired={true} placeholder="URL" name="url"/>
-          </Col>
-          <Col md={"6"}>
-            <TextField isRequired={true} placeholder="Branch" name="branch"/>
-          </Col>
-        </Row>
-      </Container>
+    <Container>
+      <p style={{ margin: "1rem 1rem" }}>Add repo info here</p>
+      <Row>
+        <Col md={"6"}>
+          <TextField isRequired={true} placeholder="URL" name="url" />
+        </Col>
+        <Col md={"6"}>
+          <TextField isRequired={true} placeholder="Branch" name="branch" />
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

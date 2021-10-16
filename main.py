@@ -37,6 +37,7 @@ def fetch_npm_package(package_name):
 
     return npm_out
 
+
 def get_electron_bin():
     """Get the binaries for electron using npm.
     
@@ -48,13 +49,17 @@ def get_electron_bin():
     os_name = os.name
     if os_name == 'nt':
         user_path = os.path.expanduser('~')
-        node_modules_path = os.path.join(user_path, 'AppData', 'Roaming', 'npm', 'node_modules')
-        electron_path = os.path.join(node_modules_path, 'electron', 'dist', 'electron.exe')
+        node_modules_path = os.path.join(
+            user_path, 'AppData', 'Roaming', 'npm', 'node_modules')
+        electron_path = os.path.join(
+            node_modules_path, 'electron', 'dist', 'electron.exe')
         return electron_path
     elif os_name == 'posix':
         user_path = 'root'
-        node_modules_path = os.path.join(user_path, 'local', 'lib', 'node_modules')
-        electron_path = os.path.join(node_modules_path, 'electron', 'dist', 'electron')
+        node_modules_path = os.path.join(
+            user_path, 'local', 'lib', 'node_modules')
+        electron_path = os.path.join(
+            node_modules_path, 'electron', 'dist', 'electron')
         return electron_path
     else:
         raise ValueError(f'{os_name} currently not supported.')
@@ -110,7 +115,7 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         if sys.argv[1] == '--develop':
             _electron_path = os.path.join(
-            os.getcwd(), "node_modules/electron/dist/electron.exe")
+                os.getcwd(), "node_modules/electron/dist/electron.exe")
             if not os.path.isfile(_electron_path):
                 raise Exception(
                     f'Electron not found in path {_electron_path}.\nPlease install using npm i electron')
@@ -128,12 +133,13 @@ if __name__ == '__main__':
         _electron_path = get_electron_bin()
 
         if not os.path.isfile(_electron_path):
-            print('Warning: Electron not found in global packages\n'\
-                    'Trying to install through npm....')
+            print('Warning: Electron not found in global packages\n'
+                  'Trying to install through npm....')
 
             npm_out = fetch_npm_package('electron')
             if not len(npm_out):
-                raise Exception("Something went wrong, couldn't install electron.")
+                raise Exception(
+                    "Something went wrong, couldn't install electron.")
             else:
                 print(npm_out[:100] + '...')
 

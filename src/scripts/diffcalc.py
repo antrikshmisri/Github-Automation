@@ -1,8 +1,6 @@
 from difflib import ndiff
 
 
-
-
 def calcDiff(firstFile, secondFile):
     # calculate raw diff
     diff = ndiff(firstFile, secondFile)

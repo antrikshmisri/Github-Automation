@@ -4,7 +4,7 @@ const useJsonFile = (fileName) => {
   const [jsonData, setJsonData] = useState([]);
   useEffect(() => {
 
-    fetch(`${process.env.PUBLIC_URL}/${fileName}` , header)
+    fetch(`${process.env.PUBLIC_URL}/${fileName}`, header)
       .then((response) => {
         return response.json();
       })
@@ -16,7 +16,7 @@ const useJsonFile = (fileName) => {
       });
   }, []);
 
-  return [jsonData , setJsonData]
+  return [jsonData, setJsonData]
 };
 
 export default useJsonFile

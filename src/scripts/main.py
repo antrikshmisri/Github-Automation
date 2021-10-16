@@ -4,9 +4,9 @@ import pyfiglet
 from .logger import *
 import sys
 
+
 def init(path):
     checkdata(path)
-
 
 
 if __name__ == '__main__':

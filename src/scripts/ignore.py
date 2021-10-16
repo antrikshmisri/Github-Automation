@@ -1,5 +1,6 @@
 from os.path import join, isfile, isdir
 
+
 def makeIgnore(path):
     """Create a .gitignore and populate it with ignore directories.
     
@@ -8,9 +9,10 @@ def makeIgnore(path):
     path : str
         Path to the root of the repository.
     """
-    f = open(join(path , '.gitignore') , "x")
+    f = open(join(path, '.gitignore'), "x")
     f.write('.git\n.idea\nnode_modules\n__pycache__\n')
     f.close()
+
 
 def getIgnoreFiles(path):
     """Determines the directories/files to ignore from a .gitignore
@@ -35,7 +37,7 @@ def getIgnoreFiles(path):
         for file in files:
             file = ''.join(file.splitlines())
             if(file != ''):
-                filepath = join(path , file)
+                filepath = join(path, file)
                 if(isfile(filepath) or isdir(filepath)):
                     ignorefiles.append(file)
     return ignorefiles
