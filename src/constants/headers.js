@@ -1,9 +1,9 @@
 const header = {
   headers: {
-    "mode": "cors",
+    mode: "cors",
     "Content-Type": "application/json",
-    "Accept": "application/json",
+    Accept: "application/json",
   },
 };
 
-export default header
+export default header;

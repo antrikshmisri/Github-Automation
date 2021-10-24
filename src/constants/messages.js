@@ -33,13 +33,11 @@ const messages = {
       return new Promise((resolve) => {
         resolve([
           document.querySelector("input[name = 'url']").value,
-          document.querySelector("input[name = 'branch']").value
-        ])
-      })
+          document.querySelector("input[name = 'branch']").value,
+        ]);
+      });
     },
-    html: (
-      <RepoInputs />
-    ),
+    html: <RepoInputs />,
   },
   noDirectory: {
     title: "Oops! No such directory",

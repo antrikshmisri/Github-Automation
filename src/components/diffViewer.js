@@ -9,7 +9,10 @@ const DiffViewer = ({ diff, setShowDiffContainer }) => {
         className={"close-btn"}
         onClick={() => setShowDiffContainer(false)}
       >
-        <img src="https://image.flaticon.com/icons/png/512/1828/1828778.png" className={'btn-icon'} />
+        <img
+          src="https://image.flaticon.com/icons/png/512/1828/1828778.png"
+          className={"btn-icon"}
+        />
       </button>
       {diffLines.map((line, idx) => {
         let lineColor = "diff-line";
