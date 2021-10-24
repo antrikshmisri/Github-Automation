@@ -9,7 +9,7 @@ import swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { eel } from "../eel";
 import messages from "../constants/messages";
-import useRepoInfo from "../hooks/useRepoInfo"
+import useRepoInfo from "../hooks/useRepoInfo";
 
 const reactSwal = withReactContent(swal);
 
@@ -23,7 +23,7 @@ const Splash = () => {
     localStorage.setItem("dirValue", dirValue);
   }, [dirValue]);
 
-  const [info, setInfo] = useRepoInfo()
+  const [info, setInfo] = useRepoInfo();
   // go to next page
   const nextPage = () => {
     let page = "/home";
@@ -45,27 +45,30 @@ const Splash = () => {
           if (info.includes("n")) {
             // get url , branch from alert inputs
 
-            reactSwal.fire(messages.noRemote).then((value) => {
-              let [url, branch] = value.value;
-              // run python entrypoint script
-              eel.initRepository([url, branch], dirValue)
-              nextPage()
-            })
-              .catch(err => {
-                console.log(err)
+            reactSwal
+              .fire(messages.noRemote)
+              .then((value) => {
+                let [url, branch] = value.value;
+                // run python entrypoint script
+                eel.initRepository([url, branch], dirValue);
+                nextPage();
+              })
+              .catch((err) => {
+                console.log(err);
               });
           } else {
-            let [url, branch] = info
-            setInfo(info)
-            swal.fire({
-              ...messages.foundRemote,
-              html: `<a onclick="window.open('${url}', '${url}')" href="javascript:void()">${url}</a> <br/> <p>${branch}</p>`,
-            }).then(value => {
-              eel.init(dirValue)
-              nextPage()
-            })
+            let [url, branch] = info;
+            setInfo(info);
+            swal
+              .fire({
+                ...messages.foundRemote,
+                html: `<a onclick="window.open('${url}', '${url}')" href="javascript:void()">${url}</a> <br/> <p>${branch}</p>`,
+              })
+              .then((value) => {
+                eel.init(dirValue);
+                nextPage();
+              });
           }
-
         });
       }
       // if path not valid show noDir alert

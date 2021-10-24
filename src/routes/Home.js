@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "../components/Header.js";
 import Footer from "../components/Footer.js";
-import useJsonFile from "../hooks/useJsonFile"
+import useJsonFile from "../hooks/useJsonFile";
 
 const Home = () => {
   const history = useHistory();
@@ -13,7 +13,7 @@ const Home = () => {
     history.push(page);
   };
 
-  const [jsonData,] = useJsonFile('tmp.json')
+  const [jsonData] = useJsonFile("tmp.json");
   return (
     <>
       <Header />
@@ -24,7 +24,9 @@ const Home = () => {
           text="VIEW FILES"
           textColor="#CED4DA"
           bgColor="#343A40"
-        ><span className="file-count py-0">{jsonData.length}</span></Button>
+        >
+          <span className="file-count py-0">{jsonData.length}</span>
+        </Button>
       </div>
       <Footer />
     </>
