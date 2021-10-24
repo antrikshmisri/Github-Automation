@@ -1,64 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
-  font-family: 'Righteous', cursive !important;
+  font-family: "Righteous", cursive !important;
 }
 
-::-webkit-scrollbar { 
-  width: 8px; 
-} 
+::-webkit-scrollbar {
+  width: 8px;
+}
 
-/* Track */ 
-::-webkit-scrollbar-track { 
-  background: #CED4DA; 
-  border-radius: 5px; 
-} 
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ced4da;
+  border-radius: 5px;
+}
 
-/* Handle */ 
+/* Handle */
 ::-webkit-scrollbar-thumb {
-  transition: 0.7s cubic-bezier(0.075, 0.82, 0.165, 1); 
-  background: #343A40; 
-  border-radius: 5px; 
-} 
-
-/* Handle on hover */ 
-::-webkit-scrollbar-thumb:hover { 
-  background: #505963; 
+  transition: 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
+  background: #343a40;
+  border-radius: 5px;
 }
 
-#root
-{
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #505963;
+}
+
+#root {
   min-height: 100vh;
-  background: linear-gradient(135deg, rgba(105,48,195,1) 0%, rgba(86,207,225,1) 98%);
+  background: linear-gradient(
+    135deg,
+    rgba(105, 48, 195, 1) 0%,
+    rgba(86, 207, 225, 1) 98%
+  );
 }
-.App
-{
+.App {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
 }
-form 
-{
+form {
   min-width: 100%;
 }
-.splash-container
-{
+.splash-container {
   display: flex;
   justify-content: center;
 }
-.splash-container h1
-{
-  color: #343A40;
+.splash-container h1 {
+  color: #343a40;
   font-weight: 700;
 }
-.logo
-{
+.logo {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -69,51 +67,47 @@ form
   transform: translate(-50%, -50%);
 }
 
-.btn-div
-{
+.btn-div {
   margin-top: 2rem;
   display: flex;
   justify-content: center;
 }
-.button
-{
+.button {
   transition: 0.7s cubic-bezier(0.075, 0.82, 0.165, 1) !important;
   border: none;
   /* width: 30%; */
   min-height: 35px;
   border-radius: 8px;
-  filter: drop-shadow(0px 4px 15px rgba(33, 37, 41,0.25));
+  filter: drop-shadow(0px 4px 15px rgba(33, 37, 41, 0.25));
   /* color: rgb(33, 37, 41); */
-  border-bottom: 4px solid rgba(33, 37, 41 , 0.75) !important;
+  border-bottom: 4.5px solid rgba(33, 37, 41, 0.8) !important;
 }
 
-span.file-count
-{
+span.file-count {
   position: fixed;
   top: -40%;
   right: -10%;
-  background-color: #E81224;
+  background-color: #e81224;
   width: 24px;
   border-radius: 50%;
 }
-.button:hover
-{
-  filter: drop-shadow(4px 4px 10px rgba(33, 37, 41,0.25));
-  transform: translateY(-5px);
+.button:hover {
+  filter: drop-shadow(4px 4px 10px rgba(33, 37, 41, 0.25));
+  transform: translateY(-4px);
 }
 
-.text{
+.text {
   text-align: center;
-  color: #CED4DA;
+  color: #ced4da;
   margin: auto;
   width: 50%;
   padding: 10px;
 }
-header{
-  color: #CED4DA;
+header {
+  color: #ced4da;
   text-align: center;
-  background-color: #212529;
-  margin: auto ;
+  background-color: rgba(33, 37, 41, 0.9);
+  margin: auto;
   position: fixed;
   padding: 5px 0;
   min-width: 100vw;
@@ -121,10 +115,9 @@ header{
   left: 0;
 }
 
-
 footer {
-  color: #CED4DA;
-  background-color: #212529;
+  color: #ced4da;
+  background-color: rgba(33, 37, 41, 0.9);
   position: fixed;
   text-align: center;
   padding: 10px 0;
@@ -133,88 +126,79 @@ footer {
   left: 0;
 }
 
-header h1 , footer h1
-{
+header h1,
+footer h1 {
   font-size: 1.5rem;
 }
 
-footer h1
-{
+footer h1 {
   word-spacing: 4px;
 }
 
-span.name
-{
-  color: #48BFE3;
+span.name {
+  color: #48bfe3;
 }
-code
-{
+code {
   white-space: pre-wrap;
 }
-.code-block
-{
+.code-block {
   max-height: 100px;
   overflow-y: auto;
 }
 .loading:after {
-  content: ' .';
-  animation: dots 1s steps(5, end) infinite;}
+  content: " .";
+  animation: dots 1s steps(5, end) infinite;
+}
 
 @keyframes dots {
-  0%, 20% {
-    color: rgba(0,0,0,0);
-    text-shadow:
-      .25em 0 0 rgba(0,0,0,0),
-      .5em 0 0 rgba(0,0,0,0);}
+  0%,
+  20% {
+    color: rgba(0, 0, 0, 0);
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
   40% {
-    color: #CED4DA;
-    text-shadow:
-      .25em 0 0 rgba(0,0,0,0),
-      .5em 0 0 rgba(0,0,0,0);}
+    color: #ced4da;
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
   60% {
-    text-shadow:
-      .25em 0 0 #CED4DA,
-      .5em 0 0 rgba(0,0,0,0);}
-  80%, 100% {
-    text-shadow:
-      .25em 0 0 #CED4DA,
-      .5em 0 0 #CED4DA;}}
+    text-shadow: 0.25em 0 0 #ced4da, 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
+  80%,
+  100% {
+    text-shadow: 0.25em 0 0 #ced4da, 0.5em 0 0 #ced4da;
+  }
+}
 
-.input-div
-{
+.input-div {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-input
-{
-  background-color: #E9ECEF;
+input {
+  background-color: #e9ecef;
   border: none;
   padding: 5px 5px;
   border-radius: 8px;
-  filter: drop-shadow(0px 4px 15px rgba(33, 37, 41,0.25));
+  filter: drop-shadow(0px 3px 15px rgba(33, 37, 41, 0.3));
   outline: none;
 }
-input[name = "install"]
-{
+input[name="install"] {
   width: 60%;
 }
 
-.file-card
-{
+.file-card {
   display: flex;
   flex-direction: column;
   margin: auto;
   background-color: #212529;
-  color: #CED4DA;
-  filter: drop-shadow(0px 4px 15px rgba(33, 37, 41,0.25));
+  color: #ced4da;
+  filter: drop-shadow(0px 3px 15px rgba(33, 37, 41, 0.3));
   min-height: 60vh;
   min-width: 30vw;
   padding: 5px 5px;
   border-radius: 10px;
 }
-.dim-overlay
-{
+.dim-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -222,38 +206,33 @@ input[name = "install"]
   min-width: 100%;
   min-height: 100%;
   background: #212529;
-  opacity: 0.8;
+  opacity: 0.85;
   box-shadow: inset 0 0 2000px #21252980;
   filter: blur(5px);
   z-index: 5;
 }
-.file-card h1
-{
-  border-bottom: 3px solid #E9ECEF;
+.file-card h1 {
+  border-bottom: 3px solid #e9ecef;
   margin-bottom: 20px;
   padding: 10px 0px;
 }
 
-.file-content
-{
+.file-content {
   padding: 1rem 1rem;
   white-space: nowrap;
 }
 
-input[name = "commit-field"]
-{
+input[name="commit-field"] {
   margin-bottom: 10px;
   width: 100%;
 }
 
-hr
-{
+hr {
   min-width: 100%;
   min-height: 2px;
-  background-color: #E9ECEF;
+  background-color: #e9ecef;
 }
-.file-btn
-{
+.file-btn {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -261,29 +240,27 @@ hr
   flex-grow: 1;
   padding-bottom: 0.5rem;
 }
-.commit-btn,.reject-btn,.diff-btn
-{
+.commit-btn,
+.reject-btn,
+.diff-btn {
   display: flex;
   flex-direction: row;
 }
-.commit-btn
-{
+.commit-btn {
   justify-content: flex-start;
 }
-.reject-btn
-{
+.reject-btn {
   justify-content: flex-end;
 }
-.diff-btn
-{
+.diff-btn {
   margin-top: 0.5rem;
   justify-content: flex-end;
 }
-.carousel-control-prev,.carousel-control-next
-{
-  transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+.carousel-control-prev,
+.carousel-control-next {
+  transition: 1s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
   margin: auto;
-  background-color: #343A40;
+  background-color: #343a40;
   max-height: 50px;
   max-width: 50px;
   border-radius: 50%;
@@ -291,25 +268,21 @@ hr
   transform: rotateZ(0deg);
 }
 
-#diff-line-added
-{
-  background-color: green !important;
+#diff-line-added {
+  background-color: rgb(2, 212, 2) !important;
   color: #212529;
 }
 
-#diff-line-remove
-{
-  background-color: red !important;
+#diff-line-remove {
+  background-color: rgb(255, 43, 36) !important;
   color: #212529;
 }
 
-#diff-lin
-{
+#diff-lin {
   color: #212529 !important;
 }
 
-.diffContainer
-{
+.diffContainer {
   display: flex;
   flex-direction: column;
   white-space: pre-wrap;
@@ -319,42 +292,39 @@ hr
   min-width: 30vw !important;
   min-height: 100%;
   border-radius: 10px;
-  background-color: #CED4DA;
+  background-color: #ced4da;
   position: absolute;
   top: 0;
   left: calc(50% - 15vw - 1.5rem);
 }
 
-.show
-{
+.show {
   display: block;
 }
 
-.hide
-{
+.hide {
   display: none;
 }
 
-button.close-btn{
+button.close-btn {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background-color: #E9ECEF;
-  color: #CED4DA;
+  background-color: #e9ecef;
+  color: #ced4da;
   border: none;
   outline: none;
   cursor: pointer;
   position: absolute;
   top: 0;
   right: 0;
-  filter: drop-shadow(0px 9px 9px rgba(33, 37, 41,0.5));
+  filter: drop-shadow(0px 8px 9px rgba(33, 37, 41, 0.55));
 }
 
-.btn-icon
-{
+.btn-icon {
   max-width: 15px;
   max-height: 15px;
 }
